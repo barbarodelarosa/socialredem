@@ -1,5 +1,7 @@
 {
-  "name": "socialredem",
-  "integrations": {},
-  "type": "angular"
+    "name": "socialredem",
+    "integrations": {
+        "cordova": {}
+    },
+    "type": "angular"
 }

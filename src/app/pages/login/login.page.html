@@ -1,0 +1,247 @@
+<ion-content>
+
+
+    <ion-slides class="mainSlide" #slidePrincipal>
+
+        <ion-slide>
+
+            <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
+                <ion-grid fixed>
+
+                    <ion-row>
+                        <ion-col>
+                            <img src="/assets/avatars/av-1.png">
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+
+                            <ion-list>
+
+                                <ion-item>
+                                    <ion-label position="floating">Correo</ion-label>
+
+
+                                    <ion-input [(ngModel)]="loginUser.email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required></ion-input>
+
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Contraseña</ion-label>
+
+                                    <ion-input [(ngModel)]="loginUser.password" name="password" type="password" required></ion-input>
+
+
+                                </ion-item>
+
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-button type="submit" color="tertiary" shape="round">
+                                Login
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+
+                    </ion-row>
+                    <ion-row>
+
+                        <ion-col>
+
+
+                            <a (click)="mostrarSlideResetPassword()">¿Hás olvidado tu contraseña?</a>
+
+                        </ion-col>
+                    </ion-row>
+
+                </ion-grid>
+            </form>
+
+
+
+        </ion-slide>
+
+        <ion-slide>
+
+
+            <ion-grid fixed>
+
+                <!-- AQUI VA EL AVATAR -->
+                <!--   
+              <app-avatar-selector (avatarSel)="registroUsuario.avatar = $event"></app-avatar-selector>
+             -->
+                <!-- Aqui comienza el formulario -->
+                <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
+                    <ion-row>
+                        <ion-col>
+
+                            <ion-list>
+
+                                <ion-item>
+                                    <ion-label position="floating">Correo</ion-label>
+                                    <ion-input [(ngModel)]="registroUsuario.email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required></ion-input>
+
+
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Nombre de Usuario</ion-label>
+                                    <ion-input [(ngModel)]="registroUsuario.username" name="nombreusuario" text="text" required></ion-input>
+
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Contraseña</ion-label>
+                                    <ion-input [(ngModel)]="registroUsuario.password1" name="contrasena" type="password" required></ion-input>
+
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label position="floating"> Confirmar Contraseña</ion-label>
+                                    <ion-input [(ngModel)]="registroUsuario.password2" name="contrasena" type="password" required></ion-input>
+
+                                </ion-item>
+
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-button type="submit" color="tertiary" shape="round">
+                                Crear usuario
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+
+                </form>
+            </ion-grid>
+
+
+        </ion-slide>
+
+        <!-- RESTABLECER CONTRASENA -->
+        <ion-slide>
+
+            <ion-grid fixed>
+
+                <!-- Aqui comienza el formulario -->
+                <form (ngSubmit)="resetPassword(rPassword)" #rPassword="ngForm">
+                    <ion-row>
+                        <ion-col>
+
+                            <!-- <ion-list> -->
+
+                            <ion-item>
+                                <ion-label position="floating">Correo</ion-label>
+
+                                <ion-input [(ngModel)]="resetPasswordObject.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" type="email" required></ion-input>
+
+                            </ion-item>
+
+
+                            <!-- </ion-list> -->
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-button type="submit" color="tertiary" shape="round">
+                                Enviar correo
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+
+                </form>
+            </ion-grid>
+
+
+        </ion-slide>
+
+        <!--
+          ///// RESET PASSWORD Y CONFIRMAR EL EMAIL
+      -->
+        <ion-slide>
+
+
+            <ion-grid fixed>
+
+                <!-- Aqui comienza el formulario -->
+                <form (ngSubmit)="confirmResetPassword(rContrasena)" #rContrasena="ngForm">
+                    <ion-row>
+                        <ion-col>
+
+                            <ion-list>
+
+                                <ion-item>
+                                    <ion-label position="floating">Código 1</ion-label>
+                                    <ion-input [(ngModel)]="confirmResetPasswordObject.codigo1" name="codigo1" type="text" required></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Código 2</ion-label>
+                                    <ion-input [(ngModel)]="confirmResetPasswordObject.codigo2" name="codigo2" text="text" required></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-label position="floating">Contraseña Nueva</ion-label>
+                                    <ion-input [(ngModel)]="confirmResetPasswordObject.password1" name="password1" type="password" required></ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label position="floating"> Confirmar Contraseña</ion-label>
+                                    <ion-input [(ngModel)]="confirmResetPasswordObject.password2" name="password2" type="password" required></ion-input>
+                                </ion-item>
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-button type="submit" color="tertiary" shape="round">
+                                Restablecer contraseña
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+
+                </form>
+            </ion-grid>
+
+
+        </ion-slide>
+    </ion-slides>
+
+
+
+</ion-content>
+
+
+<ion-footer no-border>
+    <ion-toolbar>
+
+        <ion-row>
+
+            <ion-col>
+                <ion-button (click)="mostrarSlideLogin()" shape="round" expand="full" size="small" fill="outline" color="tertiary">
+                    Ingresar
+                </ion-button>
+
+            </ion-col>
+
+            <ion-col>
+                <ion-button (click)="mostrarSlideRegistro()" shape="round" expand="full" size="small" fill="outline" color="tertiary">
+                    Registrarme
+                </ion-button>
+            </ion-col>
+
+        </ion-row>
+
+
+
+    </ion-toolbar>
+</ion-footer>

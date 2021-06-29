@@ -1,0 +1,50 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title>
+            REDEMC
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <!-- Refresher 
+  -->
+    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+
+    <!-- ojo implementarlo por SOKECT en un futuro  -->
+
+
+    <!-- Posts -->
+    <app-posts [posts]="posts"></app-posts>
+
+
+
+    <!-- Infinity scroll [disabled]="habilitado" -->
+
+    <ion-infinite-scroll [disabled]="!habilitado" threshold="25%" position="bottom" (ionInfinite)="siguientes($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+
+
+
+    <!-- Boton para agregar cosas -->
+
+
+
+
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink='/create-post'>
+            <ion-icon name="pencil"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+
+</ion-content>

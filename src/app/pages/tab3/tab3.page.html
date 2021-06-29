@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="ion-text-center">
+            Favoritos
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-slides [options]="slidesOpt" *ngIf="dataLocalService.posts.length === 0">
+        <ion-slide>
+            <ion-label>No hay favoritos</ion-label>
+        </ion-slide>
+    </ion-slides>
+
+    <app-posts *ngIf="dataLocalService.posts.length > 0" [posts]="dataLocalService.posts" [enFavoritos]="true"></app-posts>
+</ion-content>
