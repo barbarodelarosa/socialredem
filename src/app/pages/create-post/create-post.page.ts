@@ -47,10 +47,13 @@ export class CreatePostPage implements OnInit {
 
 
   async crearPost(){
+    for (const key of this.categoriaSeleccionadas) {
+      console.log(key.id);
+      this.post.categoria.push(key.id);
+    }
+
     this.uiServices.presentLoading();
     this.post.titulo = this.post.mensaje;
-    // this.post.categoria.push()
-
     const creado = await this.postService.crearPost(this.post, this.tempImagesBase64);
     // await this.postService.uploadImage(20,this.tempImagesBase64);
 

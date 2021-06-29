@@ -17,12 +17,12 @@
     <ion-list>
         <ion-item>
             <ion-label>Categorias:</ion-label>
-            <ion-select [(ngModel)]="post.categoria" multiple="true" placeholder="Seleccionar Categoria">
+            <ion-select [(ngModel)]="categoriaSeleccionadas" multiple="true" placeholder="Seleccionar Categoria">
                 <ion-select-option *ngFor="let categoria of listaCategorias" [value]="categoria">{{categoria.nombre}}</ion-select-option>
             </ion-select>
         </ion-item>
         <p>
-            <ion-chip outline color="primary" *ngFor="let item of post.categoria">
+            <ion-chip outline color="primary" *ngFor="let item of categoriaSeleccionadas">
                 <ion-icon name="attach-outline"></ion-icon>
                 <ion-label>{{item.nombre}}</ion-label>
             </ion-chip>
