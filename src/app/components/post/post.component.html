@@ -2,13 +2,17 @@
     <ion-item lines="none">
         <ion-avatar slot="start">
 
-            <!-- <img src="{{post.negocio.logo}}" /> -->
+            <img src="{{post.owner.avatar}}" />
 
         </ion-avatar>
         <ion-label>
 
-            <h3>{{post.owner.username}}</h3>
-
+            <ng-container *ngIf="post.owner.first_name; else elseTemplate">
+                <h3>{{post.owner.first_name}} {{post.owner.last_name}}</h3>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <h3>{{post.owner.username}}</h3>
+            </ng-template>
             <h5>{{post.owner.email}}</h5>
         </ion-label>
         <!-- <div class="more" > -->

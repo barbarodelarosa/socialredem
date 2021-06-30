@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { Post } from '../../interfaces/post.interface';
+import { CategoriaPost } from '../../interfaces/interfaces';
+import { IonSegment } from '@ionic/angular';
 
 
 
@@ -12,27 +14,33 @@ import { Post } from '../../interfaces/post.interface';
 })
 export class Tab1Page implements OnInit {
 
-  posts: Post[]=[]
+  posts: Post[]=[];
   ok: any={};
   habilitado=true;
-
+  categorias: CategoriaPost[]= [];
+  segmento;
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  @ViewChild(IonSegment) segment: IonSegment;
   constructor(private postService: PostsService) {}
 
 
-  ngOnInit(){
-    this.siguientes();
-
+ async ngOnInit(){
+   this.siguientes();
+   this.postService.obtenerCategoriasPosts()
+    .subscribe((resp: any)=>{
+      this.categorias.push(...resp.results);
+    },error=>{
+      console.log(error);
+    });
   }
 
   siguientes(event?, pull: boolean=false){
-
 
     this.postService.getPosts(pull).subscribe(resp=>{
       this.posts.push(...resp.results);
       console.log(this.posts);
       if(event){
         event.target.complete();
-
         if(resp.results.length < 10){
           console.log(resp.results.length);
           this.habilitado = false;
@@ -47,5 +55,13 @@ export class Tab1Page implements OnInit {
     this.posts=[];
 
   }
- 
+  segmentCategorias(event){
+    console.log(event.detail.value);
+    this.segmento = event.detail.value;
+    this.posts=[];
+    this.postService.obtenerPostPorCategorias(event.detail.value)
+    .subscribe((resp: any)=>{
+      this.posts.push(...resp.results);
+    });
+  }
 }

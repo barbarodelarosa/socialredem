@@ -68,5 +68,6 @@ export class Tab4Page implements OnInit {
     this.uiServices.presentToast('Se ha cerrado la sesión');
 
   }
+  onClick(){}
 
 }

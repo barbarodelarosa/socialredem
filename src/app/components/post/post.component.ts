@@ -13,6 +13,8 @@ export class PostComponent implements OnInit {
 
   @Input() post: Post={};
   @Input() enFavoritos;
+  @Input() categoria;
+
   // guardarBorrarBtn: string | ActionSheetButton;
 
   // imagenes = ["http://192.168.43.232:8000/media/imagenes/blog/Post/59c2bfff-3410-4631-a7a8-09c6fb03decf.jpg",

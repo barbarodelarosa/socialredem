@@ -27,6 +27,7 @@
         "@ionic-native/social-sharing": "^5.33.1",
         "@ionic/angular": "^5.5.2",
         "@ionic/storage-angular": "^3.0.6",
+        "animate.css": "^4.1.1",
         "cordova-android": "9.1.0",
         "cordova-plugin-advanced-http": "^3.1.0",
         "rxjs": "~6.6.0",

@@ -1,17 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+
+    <ion-searchbar debounce="500" mode="ios" animated placeholder="Presione enter" [(ngModel)]="buscar" (keyup.enter)="buscarPost($event)" showCancelButton="always"></ion-searchbar>
+    <ion-list>
+        <ion-item>
+            <ion-label>Categorias:</ion-label>
+            <ion-select [(ngModel)]="categoriaSeleccionadas" multiple="true" placeholder="Seleccionar Categoria">
+                <ion-select-option *ngFor="let categoria of listaCategorias" [value]="categoria">{{categoria.nombre}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <p>
+        <ion-chip outline color="primary" *ngFor="let item of categoriaSeleccionadas">
+            <ion-icon name="attach-outline"></ion-icon>
+            <ion-label>{{item.nombre}}</ion-label>
+        </ion-chip>
+    </p>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content>
+
+    <!-- Refresher 
+  -->
+    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+
+    <!-- ojo implementarlo por SOKECT en un futuro  -->
+
+
+    <!-- Posts -->
+    <app-posts [posts]="posts"></app-posts>
+
+
+
+    <!-- Infinity scroll [disabled]="habilitado" -->
+
+    <ion-infinite-scroll [disabled]="!habilitado" threshold="25%" position="bottom" (ionInfinite)="siguientes($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+
+
+
+    <!-- Boton para agregar cosas -->
+
+
+
+
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink='/create-post'>
+            <ion-icon name="pencil"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
 </ion-content>

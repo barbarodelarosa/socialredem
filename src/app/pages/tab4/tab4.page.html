@@ -31,6 +31,28 @@
     <!-- <app-avatar-selector></app-avatar-selector> -->
 
     <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
+
+
+        <ion-card color="light" class="ion-no-border">
+            <div class="img-wrapper">
+                <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg" />
+                <ion-button color="light">
+                    <ion-icon slot="icon-only" name="camera-outline" color="medium">
+                    </ion-icon>
+                </ion-button>
+            </div>
+            <ion-card-content class="ion-text-center">
+                <h2>Zahra Zamin</h2>
+                <ion-text color="medium">
+                    <div style="display: flex;" class="ion-justify-content-center">
+                        <ion-icon name="location-outline" color="medium">
+                        </ion-icon>
+                        <p>2345 Street, Ohio, USA.</p>
+                    </div>
+                </ion-text>
+            </ion-card-content>
+        </ion-card>
+        <!-- <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg"> -->
         <ion-row>
             <ion-col>
 

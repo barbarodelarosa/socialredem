@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {environment} from '../../environments/environment';
 //import { RespuestaPosts } from '../interfaces/post.interface';
-import { Post, RespuestaPosts } from '../interfaces/interfaces';
+import { Post, RespuestaPosts, CategoriaPost } from '../interfaces/interfaces';
 import {Platform} from '@ionic/angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { UiServiceService } from './ui-services.service';
@@ -23,6 +23,7 @@ post: Post;
   getPosts(pull: boolean = false){
 
     if(pull){this.paginaPost=0;    }
+
     this.paginaPost ++;
 
       return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?page=${this.paginaPost}`);
@@ -130,4 +131,26 @@ subirImagen(idUser, img: any){
 obtenerCategoriasPosts(){
   return this.httpClient.get<any[]>(`${URL}/api/v1/categoria-post/`);
 }
+obtenerPostPorCategorias(categoria: number){
+  return this.httpClient.get<Post[]>(`${URL}/api/v1/read-post/?categoria=${categoria}`);
+}
+
+
+
+  buscarPosts(getParams: any){
+
+    return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?q=${getParams.q}`);
+    // if(getParams.q){
+    // }else{
+    //   return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?q=${getParams.q}`);
+    // }
+
+  }
+
+
+  private ejecutarQuery(query: any){
+    query =  `${URL}/api/v1/read-post/?categoria=${query}`;
+    return this.httpClient.get<Post[]>(query);
+  }
+
 }
