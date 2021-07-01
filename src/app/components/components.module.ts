@@ -4,6 +4,7 @@ import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '../pipes/pipes.module';
+import { ModalImgComponent } from './modal-img/modal-img.component';
 
 
 
@@ -11,9 +12,11 @@ import { PipesModule } from '../pipes/pipes.module';
   declarations: [
     PostsComponent,
     PostComponent,
+    ModalImgComponent
   ],
   exports:[
-    PostsComponent
+    PostsComponent,
+    ModalImgComponent
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@
     <ion-item lines="none">
         <ion-avatar slot="start">
 
-            <img src="{{post.owner.avatar}}" />
+            <ion-img [src]="post.owner.avatar"></ion-img>
 
         </ion-avatar>
         <ion-label>
@@ -26,12 +26,12 @@
     <ion-slides mode="ios" pager="ios" scrollbar="ios">
 
 
-        <ion-slide class="image-slide" *ngFor="let imagen of post.post_imagen" [style]="imagen.imagen| domSanitizer">
+        <!-- <ion-slide class="image-slide" *ngFor="let imagen of post.post_imagen" [style]="imagen.imagen| domSanitizer">
 
-        </ion-slide>
-        <!-- <ion-slide class="image-slide" *ngFor="let img of imagenes">
-            <img src={{img}} alt="">
         </ion-slide> -->
+        <ion-slide class="image-slide" *ngFor="let imagen of post.post_imagen">
+            <ion-img [src]="imagen.imagen" class="img-post" (click)="abrirImg(imagen.imagen)"></ion-img>
+        </ion-slide>
 
 
     </ion-slides>

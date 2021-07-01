@@ -35,6 +35,7 @@ export interface CategoriaPost {
 
 export interface OwnerPost {
   id?: number;
+  avatar?: string;
   email?: string;
   username?: string;
   first_name?: string;
