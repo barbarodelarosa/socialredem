@@ -11,7 +11,7 @@ export class Tab3Page {
     allowSlidePrev: false,
     allowSlideNext: false,
   };
-  constructor(private dataLocalService: DatalocalService) {
+  constructor(public dataLocalService: DatalocalService) {
   }
 
 }

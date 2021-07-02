@@ -8,7 +8,7 @@ import { ExploreContainerComponentModule } from '../../explore-container/explore
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { ComponentsModule } from '../../components/components.module';
-
+import {SharedModule} from '../../shared/shared.module';
 @NgModule({
   imports: [
     IonicModule,
@@ -16,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    SharedModule
   ],
   declarations: [Tab2Page]
 })

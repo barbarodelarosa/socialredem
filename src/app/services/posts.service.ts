@@ -13,7 +13,11 @@ const URL = environment.url;
 export class PostsService {
 
 paginaPost = 0;
+paginaPostBuscar=0;
 post: Post;
+categoriasSeleccionadas: any[]=[];
+
+
   constructor(private platform: Platform,
               private httpClient: HttpClient,
               private fileTransfer: FileTransfer,
@@ -137,15 +141,26 @@ obtenerPostPorCategorias(categoria: number){
 
 
 
-  buscarPosts(getParams: any){
+  buscarPosts(getParams: any, event?){
 
-    return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?q=${getParams.q}`);
-    // if(getParams.q){
-    // }else{
-    //   return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?q=${getParams.q}`);
-    // }
-
-  }
+    if(!event){
+      this.paginaPostBuscar =0;
+    }
+    this.paginaPostBuscar ++;
+    console.log('Antes del length',getParams.categorias);
+      if(getParams.categorias){
+        // eslint-disable-next-line guard-for-in
+        for(const add of getParams.categorias){
+          this.categoriasSeleccionadas.push(`&categoria=${add.id}`);
+        }
+        console.log('Las categorias seleccionadas fueron',this.categoriasSeleccionadas.join(''));
+        console.log(`${URL}/api/v1/read-post/?q=${getParams.q}${this.categoriasSeleccionadas.join('')}&page=${this.paginaPostBuscar}`);
+        // eslint-disable-next-line max-len
+        return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?q=${getParams.q}${this.categoriasSeleccionadas.join('')}&page=${this.paginaPostBuscar}`);
+      }
+      console.log(`${URL}/api/v1/read-post/?q=${getParams.q}&page=${this.paginaPostBuscar}`);
+      return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?q=${getParams.q}&page=${this.paginaPostBuscar}`);
+    }
 
 
   private ejecutarQuery(query: any){

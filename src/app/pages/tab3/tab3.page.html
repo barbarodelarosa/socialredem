@@ -14,4 +14,10 @@
     </ion-slides>
 
     <app-posts *ngIf="dataLocalService.posts.length > 0" [posts]="dataLocalService.posts" [enFavoritos]="true"></app-posts>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink='/create-post'>
+            <ion-icon name="pencil"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

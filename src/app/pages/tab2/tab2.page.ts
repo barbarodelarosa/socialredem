@@ -10,7 +10,12 @@ import { CategoriaPost, Post } from '../../interfaces/interfaces';
 export class Tab2Page implements OnInit {
   listaCategorias: CategoriaPost[] = [];
   buscar: string;
+  categoria: []=[];
   posts: Post[]=[];
+  categoriaSeleccionadas: any;
+  habilitado = true;
+  categoriaAdd=[];
+
 
   constructor(private postService: PostsService) {}
   ngOnInit(){
@@ -21,15 +26,29 @@ export class Tab2Page implements OnInit {
       console.log(err);
     });
   }
-  buscarPost(){
-    this.posts=[];
+  buscarPost(event?){
+    if(!event){
+      this.posts=[];
+    }
+    if(!this.buscar){
+      this.buscar='';
+    }
     const getParams = {
-      q: this.buscar
+      q: this.buscar,
+      categorias: this.categoriaSeleccionadas
     };
     console.log(getParams.q);
-    this.postService.buscarPosts(getParams).subscribe((resp: any)=>{
+    console.log(getParams.categorias);
+    this.postService.buscarPosts(getParams, event).subscribe((resp: any)=>{
       this.posts.push(...resp.results);
       console.log(resp);
+      if(event){
+        event.target.complete();
+        if(resp.results.length < 10){
+          console.log(resp.results.length);
+          this.habilitado = false;
+        }
+      }
     }, error=>{
       console.log(error);
     });
@@ -38,5 +57,6 @@ export class Tab2Page implements OnInit {
     console.log(this.buscar);
     this.buscar='';
   }
+
 
 }

@@ -1,6 +1,6 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" #header>
 
-    <ion-searchbar debounce="500" mode="ios" animated placeholder="Presione enter" [(ngModel)]="buscar" (keyup.enter)="buscarPost($event)" showCancelButton="always"></ion-searchbar>
+    <ion-searchbar debounce="500" mode="ios" animated placeholder="Presione enter" [(ngModel)]="buscar" (keyup.enter)="buscarPost()" showCancelButton="always"></ion-searchbar>
     <ion-list>
         <ion-item>
             <ion-label>Categorias:</ion-label>
@@ -18,13 +18,14 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content scrollEvents="true" appHideHeader [header]="header">
+
 
     <!-- Refresher 
   -->
-    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="recargar($event)" pullFactor="0.8" pullMin="60" pullMax="120">
         <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+    </ion-refresher> -->
 
 
     <!-- ojo implementarlo por SOKECT en un futuro  -->
@@ -37,7 +38,7 @@
 
     <!-- Infinity scroll [disabled]="habilitado" -->
 
-    <ion-infinite-scroll [disabled]="!habilitado" threshold="25%" position="bottom" (ionInfinite)="siguientes($event)">
+    <ion-infinite-scroll [disabled]="!habilitado" threshold="25%" position="bottom" (ionInfinite)="buscarPost($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>

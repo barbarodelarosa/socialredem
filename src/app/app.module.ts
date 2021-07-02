@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { IonicStorageModule } from '@ionic/storage-angular';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
