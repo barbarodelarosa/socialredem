@@ -23,6 +23,8 @@ export interface Post {
   actualizado?: string;
   votos?: number;
   compartido?: number;
+  likes?: any[];
+  vistas?: number;
 }
 
 export interface CategoriaPost {

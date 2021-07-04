@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {environment} from '../../environments/environment';
@@ -34,7 +35,7 @@ categoriasSeleccionadas: any[]=[];
 
   }
 
- async crearPost(post, tempImagesBase64?: any[]){
+ async crearPost(post: Post, tempImagesBase64?: any[]){
 
 
    return new Promise(resolve=>{
@@ -93,7 +94,7 @@ categoriasSeleccionadas: any[]=[];
     });
   }
 
- uploadImage(userId, imageBase64) {
+ uploadImage(userId: any, imageBase64: any) {
     const data={
       imagen:imageBase64,
       post:userId
@@ -106,7 +107,7 @@ categoriasSeleccionadas: any[]=[];
 
 
 
-subirImagen(idUser, img: any){
+subirImagen(idUser: any | number | Blob, img: any){
   const formData = new FormData();
 
   formData.append('imagen',img);
@@ -141,7 +142,7 @@ obtenerPostPorCategorias(categoria: number){
 
 
 
-  buscarPosts(getParams: any, event?){
+  buscarPosts(getParams: any, event?: any){
 
     if(!event){
       this.paginaPostBuscar =0;
@@ -166,6 +167,19 @@ obtenerPostPorCategorias(categoria: number){
   private ejecutarQuery(query: any){
     query =  `${URL}/api/v1/read-post/?categoria=${query}`;
     return this.httpClient.get<Post[]>(query);
+  }
+
+
+  likesPost(idPost: any){
+    return this.httpClient.get<any[]>(`${URL}/api/v1/post/${idPost}/like/`);
+  }
+
+  vistasPost(idPost: any){
+    return this.httpClient.get<any[]>(`${URL}/api/v1/post/${idPost}/visto/`);
+  }
+
+  alcancePost(idPost: any){
+    return this.httpClient.get<any[]>(`${URL}/api/v1/post/${idPost}/alcance/`);
   }
 
 }

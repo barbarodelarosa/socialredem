@@ -5,6 +5,10 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { DatalocalService } from '../../services/datalocal.service';
 import { ModalController } from '@ionic/angular';
 import { ModalImgComponent } from '../modal-img/modal-img.component';
+import { PostsService } from '../../services/posts.service';
+import * as moment from 'moment';
+moment.locale('es');
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -15,6 +19,10 @@ export class PostComponent implements OnInit {
   @Input() post: Post={};
   @Input() enFavoritos;
   @Input() categoria;
+  likes = 0;
+  vista = 0;
+  fecha: any;
+
 
   // guardarBorrarBtn: string | ActionSheetButton;
 
@@ -26,9 +34,40 @@ export class PostComponent implements OnInit {
   constructor(private actionSheetController: ActionSheetController,
               private socialSharing: SocialSharing,
               private dataLocal: DatalocalService,
-              public modalController: ModalController) { }
+              public modalController: ModalController,
+              public postService: PostsService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.likes = this.post.likes.length;
+    this.vista = this.post.vistas;
+    this.vistas(this.post.id);
+    this.fecha = moment(this.post.creado, 'YYYYMMDD').fromNow();
+    this.alcance(this.post.id);
+  }
+
+  like(idPost){
+    this.postService.likesPost(idPost)
+    .subscribe((resp: any)=>{
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      this.likes = 10;
+    });
+  }
+
+  alcance(idPost){
+    this.postService.alcancePost(idPost)
+    .subscribe((resp: any)=>{
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
+    });
+  }
+
+  vistas(idPost){
+    this.postService.vistasPost(idPost)
+    .subscribe((resp: any)=>{
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      this.vista = resp.visto;
+    });
+  }
   async lanzarMenu(){
 
     let guardarBorrarBtn;
@@ -93,6 +132,8 @@ export class PostComponent implements OnInit {
     });
     return await modal.present();
   }
+
+
 
   //Fin de la clase
   }

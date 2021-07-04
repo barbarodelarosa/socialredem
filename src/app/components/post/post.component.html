@@ -13,7 +13,13 @@
             <ng-template #elseTemplate>
                 <h3>{{post.owner.username}}</h3>
             </ng-template>
-            <h5>{{post.owner.email}}</h5>
+            <small>
+                <i>
+                    <em>
+                        Publicado: {{fecha}}
+                    </em>
+                </i>
+            </small>
         </ion-label>
         <!-- <div class="more" > -->
         <ion-button (click)="lanzarMenu()" fill="clear">
@@ -42,11 +48,17 @@
 
 
     <ion-item lines="none">
-        <ion-icon slot="start" name="heart-outline"></ion-icon>
-        <ion-icon slot="end" name="bookmark"></ion-icon>
+        <ion-icon class="ion-badge" slot="start" name="heart" (click)="like(post.id)"></ion-icon>
+        <ion-badge color="primary" mode="ios" slot="start">{{likes}} Me gusta</ion-badge>
+        <ion-icon name="eye-outline" class="ion-margin"></ion-icon>
+        <ion-badge color="primary" mode="ios">{{vista}} Vistas</ion-badge>
     </ion-item>
+
     <ion-item lines="none">
+
+
         <p text-wrap class="truncateStyle">
+
             {{post.mensaje}}
         </p>
     </ion-item>

@@ -54,3 +54,8 @@ ion-slide {
     margin: 0px;
     padding: 0px;
 }
+
+.ion-badge {
+    --padding-end: 10px !important;
+    color: red !important;
+}
