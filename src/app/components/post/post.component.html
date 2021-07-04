@@ -2,7 +2,14 @@
     <ion-item lines="none">
         <ion-avatar slot="start">
 
-            <ion-img [src]="post.owner.avatar"></ion-img>
+            <ng-container *ngIf="post.owner.avatar; else elseTemplateAvatar">
+                <ion-img [src]="post.owner.avatar"></ion-img>
+                <!-- <h3>{{post.owner.first_name}} {{post.owner.last_name}}</h3> -->
+            </ng-container>
+            <ng-template #elseTemplateAvatar>
+                <ion-img src="http://192.168.43.232:8000/media/imagenes/blog/Post/59c2bfff-3410-4631-a7a8-09c6fb03decf.jpg"></ion-img>
+                <!-- <h3>{{post.owner.username}}</h3> -->
+            </ng-template>
 
         </ion-avatar>
         <ion-label>
@@ -48,7 +55,7 @@
 
 
     <ion-item lines="none">
-        <ion-icon class="ion-badge" slot="start" name="heart" (click)="like(post.id)"></ion-icon>
+        <ion-icon [style]=" liked | likes " slot="start" [name]="nameIcon" (click)="like(post.id)"></ion-icon>
         <ion-badge color="primary" mode="ios" slot="start">{{likes}} Me gusta</ion-badge>
         <ion-icon name="eye-outline" class="ion-margin"></ion-icon>
         <ion-badge color="primary" mode="ios">{{vista}} Vistas</ion-badge>

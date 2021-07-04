@@ -22,7 +22,8 @@ export class PostComponent implements OnInit {
   likes = 0;
   vista = 0;
   fecha: any;
-
+  liked: boolean;
+  nameIcon = 'heart-outline';
 
   // guardarBorrarBtn: string | ActionSheetButton;
 
@@ -40,16 +41,25 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     this.likes = this.post.likes.length;
     this.vista = this.post.vistas;
+    this.liked = false;
     this.vistas(this.post.id);
-    this.fecha = moment(this.post.creado, 'YYYYMMDD').fromNow();
+    this.fecha = moment(this.post.creado).fromNow();
     this.alcance(this.post.id);
+    console.log(this.post.likes);
   }
 
   like(idPost){
     this.postService.likesPost(idPost)
     .subscribe((resp: any)=>{
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      this.likes = 10;
+      this.likes = resp.count;
+      this.liked = resp.liked;
+      if(resp.liked===true){
+        this.nameIcon = 'heart';
+      }
+      if(resp.liked===false){
+        this.nameIcon = 'heart-outline';
+      }
     });
   }
 

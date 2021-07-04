@@ -4,9 +4,30 @@
 // .top-20 {
 //     margin-top: 20px;
 // }
-// img {
-//     width: 120px;
-// }
+.circular--portrait {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.circular--portrait img {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-camera {
+    margin: 0 auto;
+}
+
+.div-btn-img {
+    display: flex;
+    justify-content: center;
+}
+
 // .pick-avatar {
 //     width: 80px;
 //     opacity: 0.3;
