@@ -117,7 +117,19 @@ export class PostComponent implements OnInit {
           );
           console.log('Share clicked');
         }
-      },  {
+      }, 
+      {
+        text: 'Denunciar',
+        icon: 'warning',
+        handler: () =>  {
+            this.postService.reportPost(this.post.id)
+            .subscribe(resp=>{
+              console.log('Denunciado');
+              console.log(resp);
+            })
+          }
+      }, 
+       {
         text: 'Cancelar',
         icon: 'close',
         role: 'cancel',

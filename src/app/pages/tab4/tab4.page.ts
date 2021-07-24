@@ -45,7 +45,7 @@ export class Tab4Page implements OnInit {
 
  getUser(){
     this.usuarioService.getUser().subscribe(usuario=>{
-      this.usuario=usuario
+      this.usuario=usuario;
     },error=>{
       this.uiServices.presentToast('No se pudo cargar su información de usuario');
     });

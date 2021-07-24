@@ -174,6 +174,10 @@ obtenerPostPorCategorias(categoria: number){
     return this.httpClient.get<any[]>(`${URL}/api/v1/post/${idPost}/like/`);
   }
 
+  reportPost(idPost: any){
+    return this.httpClient.get<any[]>(`${URL}/api/v1/post/${idPost}/reports/`);
+  }
+
   vistasPost(idPost: any){
     return this.httpClient.get<any[]>(`${URL}/api/v1/post/${idPost}/visto/`);
   }
