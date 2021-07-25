@@ -26,7 +26,7 @@ export class Tab4Page implements OnInit {
   usuario: User={
     username: '',
     email: '',
-    avatar: '',
+    
     password1: '',
     password2: '',
     first_name: '',
@@ -51,14 +51,14 @@ export class Tab4Page implements OnInit {
     });
  }
 
- async userUpdate(fUserUpdate: NgForm){
+async userUpdate(fUserUpdate: NgForm){
     if(fUserUpdate.invalid){return;}
     const loading = await this.loadingController.create({
       message: 'Por favor espere...',
       //duration: 2000
     });
     await loading.present();
-    this.usuarioService.userUpdate(this.usuario)
+    this.usuarioService.userUpdate(fUserUpdate.value)
       .subscribe(user=>{
         this.usuario = user;
       this.uiServices.presentToast('Usuario actualizado');
@@ -66,7 +66,7 @@ export class Tab4Page implements OnInit {
       this.uiServices.presentToast('Ha ocurrido una error y no se pudo actualizar el usuario');
       });
     await loading.dismiss();
- }
+}
 
   logout(){
     this.postService.paginaPost=0;

@@ -242,6 +242,7 @@ async validaToken(){
  userUpdate(usuario: User){
   // SE DEBE ACTUALIZAR EL USUARIO EN LA BASE DE DATOS Y EN LOCALSTORAGE
   console.log('La data es', usuario);
+  
   return this.http.put<User>(`${URL}${ENV.pathGetUser}`,usuario);
 
 }

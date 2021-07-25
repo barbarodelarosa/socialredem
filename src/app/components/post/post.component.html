@@ -7,7 +7,7 @@
                 <!-- <h3>{{post.owner.first_name}} {{post.owner.last_name}}</h3> -->
             </ng-container>
             <ng-template #elseTemplateAvatar>
-                <ion-img src="http://192.168.43.232:8000/media/imagenes/blog/Post/59c2bfff-3410-4631-a7a8-09c6fb03decf.jpg"></ion-img>
+                <ion-img src="http://127.0.0.1:8000/media/imagenes/blog/Post/59c2bfff-3410-4631-a7a8-09c6fb03decf.jpg"></ion-img>
                 <!-- <h3>{{post.owner.username}}</h3> -->
             </ng-template>
 
@@ -55,12 +55,26 @@
 
 
     <ion-item lines="none">
-        <ion-icon [style]=" liked | likes " slot="start" [name]="nameIcon" (click)="like(post.id)"></ion-icon>
+        <!-- <ion-icon [style]=" liked | likes " slot="start" [name]="nameIcon" (click)="like(post.id)"></ion-icon>
         <ion-badge color="primary" mode="ios" slot="start">{{likes}} Me gusta</ion-badge>
         <ion-icon name="eye-outline" class="ion-margin"></ion-icon>
-        <ion-badge color="primary" mode="ios">{{vista}} Vistas</ion-badge>
+        <ion-badge color="primary" mode="ios">{{vista}} Vistas</ion-badge> -->
+        <ion-icon [style]=" liked | likes " slot="start" class="margin-inline-end-15" [name]="nameIcon" (click)="like(post.id)"></ion-icon> 
+        <ion-icon slot="start" name="chatbubbles-outline" class="margin-inline-end-15" mode="ios" ></ion-icon>
+        <ion-icon slot="start" name="send-outline" class="margin-inline-end-15" ></ion-icon>
+        <ion-icon slot="end" name="bookmark-outline" class="margin-inline-end-15" ></ion-icon>
+       
     </ion-item>
-
+    <ion-item class="margin-top-botton">
+        <ion-label class="margin-top-botton">
+            {{likes}} Me gusta
+        </ion-label>
+        <br>
+        <ion-label class="margin-top-botton">
+            Ver {{likes}} comentarios
+        </ion-label>
+    </ion-item>
+   
     <ion-item lines="none">
 
 

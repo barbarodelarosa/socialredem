@@ -29,6 +29,27 @@
 
 
     <!-- <app-avatar-selector></app-avatar-selector> -->
+    <ion-row>
+        <ion-col size="6">
+            <div class="circular--portrait">
+                <img [src]="usuario.avatar">
+                <ion-button class="btn-camera">
+                    <ion-icon slot="icon-only" name="camera-outline">
+                    </ion-icon>
+                </ion-button>
+            </div>
+            <div class="div-btn-img">
+                <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
+                    <ion-icon slot="icon-only" name="images-outline">
+                    </ion-icon>
+                </ion-button>
+            </div>
+        </ion-col>
+        <ion-col size="6">
+            aqui van un poco de cosasa
+        </ion-col>
+    </ion-row>
+    
 
     <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
 
@@ -52,20 +73,14 @@
                 </ion-text>
             </ion-card-content>
         </ion-card> -->
-        <div class="circular--portrait">
-            <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg">
-            <ion-button class="btn-camera">
-                <ion-icon slot="icon-only" name="camera-outline">
-                </ion-icon>
-            </ion-button>
-        </div>
-        <div class="div-btn-img">
+        
+        <!-- <div class="div-btn-img">
             <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
                 <ion-icon slot="icon-only" name="images-outline">
                 </ion-icon>
             </ion-button>
 
-        </div>
+        </div> -->
 
 
         <ion-row>
