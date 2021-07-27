@@ -73,4 +73,12 @@ export interface User {
   password2: string;
   first_name?: string;
   last_name?: string;
+  presentation?: string;
+  seguidores?: any[];
+  amigos?: any[];
+  usuario_seguidores?: any[];
+  age?: number,
+  birthday?: number,
+  height?: number,
+  weight?: number,
 }

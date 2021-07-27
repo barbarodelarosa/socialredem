@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'create-business',
     loadChildren: () => import('./pages/create-business/create-business.module').then( m => m.CreateBusinessPageModule)
+  },
+  {
+    path: 'detail-user',
+    loadChildren: () => import('./pages/detail-user/detail-user.module').then( m => m.DetailUserPageModule)
   }
 ];
 @NgModule({

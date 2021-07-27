@@ -24,13 +24,20 @@ export class Tab4Page implements OnInit {
 
   //SINO DECLARO EL TIPO DE OBJETO USER DA ERROR AL CARGAR LA PAGINA
   usuario: User={
-    username: '',
-    email: '',
-    
-    password1: '',
-    password2: '',
-    first_name: '',
-    last_name: ''
+    username:     '',
+    email:        '',
+    password1:    '',
+    password2:    '',
+    first_name:   '',
+    last_name:    '',
+    presentation: '',
+    seguidores:   [],
+    usuario_seguidores:   [],
+    amigos:       [],
+    age: 0,
+    birthday: 0,
+    height: 0,
+    weight: 0,
   };
 
   constructor(private usuarioService: UsuarioService,

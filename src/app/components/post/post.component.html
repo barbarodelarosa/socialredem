@@ -61,8 +61,8 @@
         <ion-badge color="primary" mode="ios">{{vista}} Vistas</ion-badge> -->
         <ion-icon [style]=" liked | likes " slot="start" class="margin-inline-end-15" [name]="nameIcon" (click)="like(post.id)"></ion-icon> 
         <ion-icon slot="start" name="chatbubbles-outline" class="margin-inline-end-15" mode="ios" ></ion-icon>
-        <ion-icon slot="start" name="send-outline" class="margin-inline-end-15" ></ion-icon>
-        <ion-icon slot="end" name="bookmark-outline" class="margin-inline-end-15" ></ion-icon>
+        <ion-icon slot="start" name="paper-plane-outline" class="margin-inline-end-15" (click)="sharePost()"></ion-icon>
+        <ion-icon slot="end" name="bookmark-outline" class="margin-inline-end-15" (click)="savePost()"></ion-icon>
        
     </ion-item>
     <ion-item class="margin-top-botton">

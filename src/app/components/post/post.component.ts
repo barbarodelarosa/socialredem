@@ -6,9 +6,11 @@ import { DatalocalService } from '../../services/datalocal.service';
 import { ModalController } from '@ionic/angular';
 import { ModalImgComponent } from '../modal-img/modal-img.component';
 import { PostsService } from '../../services/posts.service';
+import {environment} from '../../../environments/environment'
 import * as moment from 'moment';
 moment.locale('es');
 
+const URL = environment.url;
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -98,6 +100,7 @@ export class PostComponent implements OnInit {
           this.dataLocal.guardarPost(this.post);
         }
       };
+      
     }
 
     const actionSheet = await this.actionSheetController.create({
@@ -113,7 +116,7 @@ export class PostComponent implements OnInit {
             this.post.mensaje,
             this.post.owner.username,
             '',
-            'http://localhost:8100',
+            `${URL}`,
           );
           console.log('Share clicked');
         }
@@ -156,7 +159,23 @@ export class PostComponent implements OnInit {
   }
 
 
-
+  sharePost(){
+    this.socialSharing.share(
+      this.post.mensaje,
+      this.post.owner.username,
+      '',
+      `${URL}`,
+    );
+    console.log('Share clicked');
+  }
+  savePost(){
+    if( this.enFavoritos ){
+      // borrar
+      this.dataLocal.borrarPosts(this.post);
+    }else{
+      this.dataLocal.guardarPost(this.post);
+      };
+    }
   //Fin de la clase
   }
 

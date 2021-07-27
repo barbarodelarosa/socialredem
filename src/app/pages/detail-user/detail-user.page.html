@@ -1,0 +1,181 @@
+<ion-header no-border>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/">
+          <ion-icon slot="start" src="../../../assets/svg/md-arrow-round-back.svg"></ion-icon>
+        </ion-back-button>
+    </ion-buttons>
+      <h1 class="ion-text-center">Nombre del usuario</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="top-20">
+
+      <ion-col size="12" text-center>
+          <!-- <img [src]="usuario.avatar" class="img-avatar"> -->
+      </ion-col>
+
+  </ion-row>
+  <!-- 
+  <ion-row class="top-20">
+      <ion-col size="12" text-center>
+          <ion-label>
+          </ion-label>
+      </ion-col>
+  </ion-row> -->
+
+
+  <!-- <app-avatar-selector></app-avatar-selector> -->
+  <ion-row>
+      <ion-col size="6">
+          <div class="circular--portrait">
+              <img [src]="usuario.avatar">
+              <!-- <ion-button class="btn-camera">
+                  <ion-icon slot="icon-only" name="camera-outline">
+                  </ion-icon>
+              </ion-button> -->
+          </div>
+          <!-- <div class="div-btn-img">
+              <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
+                  <ion-icon slot="icon-only" name="images-outline">
+                  </ion-icon>
+              </ion-button>
+          </div> -->
+      </ion-col>
+      <ion-col size="6">
+          <!-- <ion-row>
+              <ion-col size="12">
+                  Amigos: {{usuario.amigos.length}}
+              </ion-col>
+          </ion-row> -->
+          <ion-row>
+              <ion-col size="12">
+                  Seguidores: {{usuario.seguidores.length}}
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size="12">
+                  Seguiendo: {{usuario.usuario_seguidores.length}}
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size="12">
+                  Edad: {{usuario.age}}
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size="12">
+                  Talla: {{usuario.height}}
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col size="12">
+                  Peso: {{usuario.weight}}
+              </ion-col>
+          </ion-row>
+          <!-- <ion-row>
+              <ion-col size="12">
+                  Coeficiente Int: {{usuario.weight}}
+              </ion-col>
+          </ion-row> -->
+
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      {{usuario.presentation}}
+    </ion-col>
+  </ion-row>
+  
+<ion-segment value="perfil">
+  <ion-segment-button value="user">
+    <ion-label>
+      <ion-icon size="large" slot="start" src="../../../assets/svg/md-person.svg"></ion-icon>
+    </ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="posts">
+    <ion-label>
+      <ion-icon size="large" slot="start" src="../../../assets/svg/md-grid.svg"></ion-icon>
+    </ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="pasta1">
+    <ion-label>
+      <ion-icon size="large" slot="start" src="../../../assets/svg/md-pulse.svg"></ion-icon>
+    </ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+  <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
+
+
+      <!-- <ion-card color="light" class="ion-no-border">
+          <div class="img-wrapper">
+              <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg" />
+              <ion-button color="light">
+                  <ion-icon slot="icon-only" name="camera-outline" color="medium">
+                  </ion-icon>
+              </ion-button>
+          </div>
+          <ion-card-content class="ion-text-center">
+              <h2>Zahra Zamin</h2>
+              <ion-text color="medium">
+                  <div style="display: flex;" class="ion-justify-content-center">
+                      <ion-icon name="location-outline" color="medium">
+                      </ion-icon>
+                      <p>2345 Street, Ohio, USA.</p>
+                  </div>
+              </ion-text>
+          </ion-card-content>
+      </ion-card> -->
+      
+      <!-- <div class="div-btn-img">
+          <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
+              <ion-icon slot="icon-only" name="images-outline">
+              </ion-icon>
+          </ion-button>
+
+      </div> -->
+
+     
+      <ion-row>
+          <ion-col>
+
+              <ion-list>
+
+                  <ion-item>
+                      <ion-label position="floating">Correo</ion-label>
+                      <ion-input readonly='True' [(ngModel)]="usuario.email" name="email" type="email"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                      <ion-label position="floating">Nombre de usuario</ion-label>
+                      <ion-input readonly='True' [(ngModel)]="usuario.username" name="username" type="text"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                      <ion-label position="floating">Nombre</ion-label>
+                      <ion-input [(ngModel)]="usuario.first_name" name="first_name" type="text"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                      <ion-label position="floating">Apellidos</ion-label>
+                      <ion-input [(ngModel)]="usuario.last_name" name="last_name" type="text"></ion-input>
+                  </ion-item>
+
+
+              </ion-list>
+          </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+          <ion-col text-center>
+              <ion-button type="submit" color="tertiary" shape="round">
+                  Actualizar
+              </ion-button>
+          </ion-col>
+      </ion-row> -->
+
+  </form>
+
+
+</ion-content>

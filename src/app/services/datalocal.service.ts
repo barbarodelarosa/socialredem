@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Post } from '../interfaces/interfaces';
+import { UiServiceService } from './ui-services.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class DatalocalService {
   private _storage: Storage | null = null;
   favoritos: Post[] = [];
   posts: Post[] = [];
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage,
+              private uiService: UiServiceService) {
     this.init();
     this.cargarFavoritos();
   }
@@ -32,7 +34,7 @@ export class DatalocalService {
   borrarPosts( post: Post){
     this.posts = this.posts.filter(pos => pos.id !== post.id);
     this.storage.set('favoritos', this.posts);
-
+    this.uiService.presentToast('Eliminado a Favoritos');
   }
 
   async guardarPost(post: Post){
@@ -41,6 +43,7 @@ export class DatalocalService {
       this.posts.unshift(post);
       this.storage.set('favoritos', this.posts);
     }
+    this.uiService.presentToast('Agregado a Favoritos');
   }
 
 
