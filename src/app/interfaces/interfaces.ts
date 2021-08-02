@@ -66,6 +66,7 @@ export interface RespuestaLogin {
 export interface User {
   detail?: any; // este es solo para que no de error en el servicio
   pk?: number;
+  id?: number;
   username: string;
   email: string;
   avatar?: string;
@@ -77,6 +78,7 @@ export interface User {
   seguidores?: any[];
   amigos?: any[];
   usuario_seguidores?: any[];
+  post_set?: any[];
   age?: number,
   birthday?: number,
   height?: number,

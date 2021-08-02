@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../interfaces/interfaces';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { environment } from '../../../environments/environment';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, IonSegment } from '@ionic/angular';
 import { UiServiceService } from '../../services/ui-services.service';
 import { PostsService } from '../../services/posts.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -20,8 +20,10 @@ const URL = environment.url;
 })
 export class DetailUserPage implements OnInit {
 
+  // @ViewChild(IonSegment) segment: IonSegment;
   tempImages = '';
   tempImagesBase64 = '';
+  segmentUser: string = 'user';
 
   //SINO DECLARO EL TIPO DE OBJETO USER DA ERROR AL CARGAR LA PAGINA
   usuario: User={
@@ -35,6 +37,7 @@ export class DetailUserPage implements OnInit {
     seguidores:   [],
     usuario_seguidores:   [],
     amigos:       [],
+    post_set:       [],
     age: 0,
     birthday: 0,
     height: 0,
@@ -48,7 +51,8 @@ export class DetailUserPage implements OnInit {
               private postService: PostsService,
               private camera: Camera) {}
   async ngOnInit(){
-   await this.getUser();
+    await this.getUser();
+    // this.segmentUser = 'user';  
   }
 
  getUser(){
@@ -110,4 +114,9 @@ async userUpdate(fUserUpdate: NgForm){
     });
   }
 
+
+  segmentChangeDetailUser(event){
+    const valueSegment = event.detail.value;
+    console.log(valueSegment);
+  }
 }

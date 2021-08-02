@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../interfaces/interfaces';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { environment } from '../../../environments/environment';
@@ -9,6 +8,7 @@ import { LoadingController } from '@ionic/angular';
 import { UiServiceService } from '../../services/ui-services.service';
 import { PostsService } from '../../services/posts.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Post, User, RespuestaPosts } from '../../interfaces/interfaces';
 
 declare let window: any;
 const URL = environment.url;
@@ -21,6 +21,11 @@ const URL = environment.url;
 export class Tab4Page implements OnInit {
   tempImages = '';
   tempImagesBase64 = '';
+  postsByUser: Post[]=[];
+  habilitado=true;
+  nextResult=false;
+  numPages=1;
+  numPageActual=0;
 
   //SINO DECLARO EL TIPO DE OBJETO USER DA ERROR AL CARGAR LA PAGINA
   usuario: User={
@@ -39,7 +44,7 @@ export class Tab4Page implements OnInit {
     height: 0,
     weight: 0,
   };
-
+  segmentUser: string = 'user';
   constructor(private usuarioService: UsuarioService,
               private http: HttpClient,
               private loadingController: LoadingController,
@@ -108,5 +113,31 @@ async userUpdate(fUserUpdate: NgForm){
       // Handle error
     });
   }
-
+  segmentChangeDetailUser(event){
+    const valueSegment = event.detail.value;
+    console.log(valueSegment);
+  }
+  // postsUser(event?){
+  //   this.postService.getPostsByUser(this.usuario.id).subscribe((resp:RespuestaPosts)=>{
+  //     this.postsByUser.push(...resp.results);
+    
+  //     console.log(this.postsByUser[5].post_imagen[0].imagen);
+  //     if(event){
+  //       event.target.complete();
+  //       console.log('Habilitado->',resp.results.length);
+  //       console.log('resp.num_pages',resp.num_pages);
+  //       console.log('resp.page_number',resp.page_number);
+  //       if(resp.num_pages === resp.page_number){
+  //         event.target.disabled=false;
+  //         // this.habilitado = false;
+  //       }
+  //     }
+  //   });
+  // }
+  // nextPost(event?){
+  //   if(this.nextResult === true){
+  //     this.postsUser(event)
+  //   }
+  // }
 }
+

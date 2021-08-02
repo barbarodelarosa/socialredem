@@ -186,4 +186,10 @@ obtenerPostPorCategorias(categoria: number){
     return this.httpClient.get<any[]>(`${URL}/api/v1/post/${idPost}/alcance/`);
   }
 
+  getPostsByUser(idUser, pull: boolean = false){
+    if(pull){this.paginaPost=0;}
+    this.paginaPost ++;
+    return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?owner=${idUser}&page=${this.paginaPost}`);
+  }
+
 }

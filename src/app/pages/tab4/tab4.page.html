@@ -85,82 +85,132 @@
 
         </ion-col>
     </ion-row>
-    
+    <ion-row>
+        <ion-col size="12">
+            <ion-label position="floating">
+               Detalle
+            </ion-label>
+            <ion-textarea [value]="usuario.presentation" rows="6">
+                <!-- {{usuario.presentation}} -->
+            </ion-textarea>
+        </ion-col>
+    </ion-row>
+ 
+    <ion-segment [(ngModel)]="segmentUser" (ionChange)="segmentChangeDetailUser($event)">
+        <ion-segment-button value="user" checked>
+          <ion-label>
+            <ion-icon size="large" slot="start" src="../../../assets/svg/md-person.svg"></ion-icon>
+          </ion-label>
+        </ion-segment-button>
+        <!-- <ion-segment-button value="posts" (click)="postsUser()">
+          <ion-label>
+            <ion-icon size="large" slot="start" src="../../../assets/svg/md-grid.svg"></ion-icon>
+          </ion-label>
+        </ion-segment-button> -->
+        <ion-segment-button value="tests">
+          <ion-label>
+            <ion-icon size="large" slot="start" src="../../../assets/svg/md-pulse.svg"></ion-icon>
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      
+      <div [ngSwitch]="segmentUser">
+        <div *ngSwitchCase="'user'">
+            <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
 
-    <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
 
-
-        <!-- <ion-card color="light" class="ion-no-border">
-            <div class="img-wrapper">
-                <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg" />
-                <ion-button color="light">
-                    <ion-icon slot="icon-only" name="camera-outline" color="medium">
-                    </ion-icon>
-                </ion-button>
-            </div>
-            <ion-card-content class="ion-text-center">
-                <h2>Zahra Zamin</h2>
-                <ion-text color="medium">
-                    <div style="display: flex;" class="ion-justify-content-center">
-                        <ion-icon name="location-outline" color="medium">
-                        </ion-icon>
-                        <p>2345 Street, Ohio, USA.</p>
+                <!-- <ion-card color="light" class="ion-no-border">
+                    <div class="img-wrapper">
+                        <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg" />
+                        <ion-button color="light">
+                            <ion-icon slot="icon-only" name="camera-outline" color="medium">
+                            </ion-icon>
+                        </ion-button>
                     </div>
-                </ion-text>
-            </ion-card-content>
-        </ion-card> -->
+                    <ion-card-content class="ion-text-center">
+                        <h2>Zahra Zamin</h2>
+                        <ion-text color="medium">
+                            <div style="display: flex;" class="ion-justify-content-center">
+                                <ion-icon name="location-outline" color="medium">
+                                </ion-icon>
+                                <p>2345 Street, Ohio, USA.</p>
+                            </div>
+                        </ion-text>
+                    </ion-card-content>
+                </ion-card> -->
+                
+                <!-- <div class="div-btn-img">
+                    <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
+                        <ion-icon slot="icon-only" name="images-outline">
+                        </ion-icon>
+                    </ion-button>
         
-        <!-- <div class="div-btn-img">
-            <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
-                <ion-icon slot="icon-only" name="images-outline">
-                </ion-icon>
-            </ion-button>
-
-        </div> -->
-
-        <ion-row>
-            <ion-col size="12">
-                sdfdffd
-                {{usuario.presentation}}
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-
-                <ion-list>
-
-                    <ion-item>
-                        <ion-label position="floating">Correo</ion-label>
-                        <ion-input readonly='True' [(ngModel)]="usuario.email" name="email" type="email"></ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label position="floating">Nombre de usuario</ion-label>
-                        <ion-input readonly='True' [(ngModel)]="usuario.username" name="username" type="text"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label position="floating">Nombre</ion-label>
-                        <ion-input [(ngModel)]="usuario.first_name" name="first_name" type="text"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label position="floating">Apellidos</ion-label>
-                        <ion-input [(ngModel)]="usuario.last_name" name="last_name" type="text"></ion-input>
-                    </ion-item>
-
-
-                </ion-list>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col text-center>
-                <ion-button type="submit" color="tertiary" shape="round">
-                    Actualizar
-                </ion-button>
-            </ion-col>
-        </ion-row>
-
-    </form>
+                </div> -->
+        
+             
+                <ion-row>
+                    <ion-col>
+        
+                        <ion-list>
+        
+                            <ion-item>
+                                <ion-label position="floating">Correo</ion-label>
+                                <ion-input readonly='True' [(ngModel)]="usuario.email" name="email" type="email"></ion-input>
+                            </ion-item>
+        
+                            <ion-item>
+                                <ion-label position="floating">Nombre de usuario</ion-label>
+                                <ion-input readonly='True' [(ngModel)]="usuario.username" name="username" type="text"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Nombre</ion-label>
+                                <ion-input [(ngModel)]="usuario.first_name" name="first_name" type="text"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Apellidos</ion-label>
+                                <ion-input [(ngModel)]="usuario.last_name" name="last_name" type="text"></ion-input>
+                            </ion-item>
+        
+        
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+        
+                <ion-row>
+                    <ion-col text-center>
+                        <ion-button type="submit" color="tertiary" shape="round">
+                            Actualizar
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+        
+            </form>
+        </div>
+      
+        <!-- <div *ngSwitchCase="'posts'">
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="3" *ngFor="let postUser of postsByUser">
+                        <img src="postUser.post_imagen[0].imagen" />
+                    </ion-col>
+                </ion-row>
+                <ion-infinite-scroll threshold="80%" position="bottom" (ionInfinite)="postsUser($event)">
+                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+                    </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+            </ion-grid>
+            <!-- <ion-label position="floating"><strong>Id:</strong></ion-label>
+            <p>{{idPost}}</p> -->
+        <!--</div> -->
+      
+        <div *ngSwitchCase="'tests'">
+          <ion-row>
+            <ion-col size="12">Esdtamos probando</ion-col>
+          </ion-row>
+        </div>
+      
+      </div>
+   
 
 
 </ion-content>

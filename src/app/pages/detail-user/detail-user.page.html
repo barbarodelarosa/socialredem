@@ -88,94 +88,61 @@
       {{usuario.presentation}}
     </ion-col>
   </ion-row>
-  
-<ion-segment value="perfil">
-  <ion-segment-button value="user">
+ 
+<ion-segment [(ngModel)]="segmentUser" (ionChange)="segmentChangeDetailUser($event)">
+  <ion-segment-button value="user" checked>
     <ion-label>
       <ion-icon size="large" slot="start" src="../../../assets/svg/md-person.svg"></ion-icon>
     </ion-label>
   </ion-segment-button>
-  <ion-segment-button value="posts">
+  <!-- <ion-segment-button value="posts">
     <ion-label>
       <ion-icon size="large" slot="start" src="../../../assets/svg/md-grid.svg"></ion-icon>
     </ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="pasta1">
+  </ion-segment-button> -->
+  <ion-segment-button value="tests">
     <ion-label>
       <ion-icon size="large" slot="start" src="../../../assets/svg/md-pulse.svg"></ion-icon>
     </ion-label>
   </ion-segment-button>
 </ion-segment>
 
-  <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
+<div [ngSwitch]="segmentUser">
+  <div *ngSwitchCase="'user'">
+    <ion-item>
+      <ion-label position="floating"><strong>Nombre:</strong></ion-label>
+      <p>{{usuario.first_name}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"><strong>Apellidos:</strong></ion-label>
+      <p>{{usuario.last_name}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"><strong>Nombre de usuario:</strong></ion-label>
+      <p>{{usuario.username}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"><strong>Correo:</strong></ion-label>
+      <p>{{usuario.email}}</p>
+    </ion-item>
+  </div>
 
-
-      <!-- <ion-card color="light" class="ion-no-border">
-          <div class="img-wrapper">
-              <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg" />
-              <ion-button color="light">
-                  <ion-icon slot="icon-only" name="camera-outline" color="medium">
-                  </ion-icon>
-              </ion-button>
-          </div>
-          <ion-card-content class="ion-text-center">
-              <h2>Zahra Zamin</h2>
-              <ion-text color="medium">
-                  <div style="display: flex;" class="ion-justify-content-center">
-                      <ion-icon name="location-outline" color="medium">
-                      </ion-icon>
-                      <p>2345 Street, Ohio, USA.</p>
-                  </div>
-              </ion-text>
-          </ion-card-content>
-      </ion-card> -->
-      
-      <!-- <div class="div-btn-img">
-          <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
-              <ion-icon slot="icon-only" name="images-outline">
-              </ion-icon>
-          </ion-button>
-
-      </div> -->
-
-     
+  <!-- <div *ngSwitchCase="'posts'">
+    <ion-grid fixed>
       <ion-row>
-          <ion-col>
-
-              <ion-list>
-
-                  <ion-item>
-                      <ion-label position="floating">Correo</ion-label>
-                      <ion-input readonly='True' [(ngModel)]="usuario.email" name="email" type="email"></ion-input>
-                  </ion-item>
-
-                  <ion-item>
-                      <ion-label position="floating">Nombre de usuario</ion-label>
-                      <ion-input readonly='True' [(ngModel)]="usuario.username" name="username" type="text"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                      <ion-label position="floating">Nombre</ion-label>
-                      <ion-input [(ngModel)]="usuario.first_name" name="first_name" type="text"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                      <ion-label position="floating">Apellidos</ion-label>
-                      <ion-input [(ngModel)]="usuario.last_name" name="last_name" type="text"></ion-input>
-                  </ion-item>
-
-
-              </ion-list>
+          <ion-col size="3" *ngFor="let idPost of usuario.post_set">
+              <img src="http://127.0.0.1:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg" />
           </ion-col>
       </ion-row>
+  </ion-grid>
+  </div> -->
 
-      <!-- <ion-row>
-          <ion-col text-center>
-              <ion-button type="submit" color="tertiary" shape="round">
-                  Actualizar
-              </ion-button>
-          </ion-col>
-      </ion-row> -->
+  <div *ngSwitchCase="'tests'">
+    <ion-row>
+      <ion-col size="12">Esdtamos probando</ion-col>
+    </ion-row>
+  </div>
 
-  </form>
-
+</div>
 
 </ion-content>
