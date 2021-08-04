@@ -41,7 +41,7 @@
 
                     <ion-row>
                         <ion-col>
-                            <ion-button type="submit" color="tertiary" shape="round">
+                            <ion-button type="submit" color="tertiary" shape="round"  [disabled]="fLogin.invalid">
                                 Login
                             </ion-button>
                         </ion-col>
@@ -114,7 +114,7 @@
 
                     <ion-row>
                         <ion-col>
-                            <ion-button type="submit" color="tertiary" shape="round">
+                            <ion-button type="submit" color="tertiary" shape="round" [disabled]="fRegistro.invalid">
                                 Crear usuario
                             </ion-button>
                         </ion-col>
@@ -152,7 +152,7 @@
 
                     <ion-row>
                         <ion-col>
-                            <ion-button type="submit" color="tertiary" shape="round">
+                            <ion-button type="submit" color="tertiary" shape="round" [disabled]="rPassword.invalid">
                                 Enviar correo
                             </ion-button>
                         </ion-col>
@@ -203,7 +203,7 @@
 
                     <ion-row>
                         <ion-col>
-                            <ion-button type="submit" color="tertiary" shape="round">
+                            <ion-button type="submit" color="tertiary" shape="round" [disabled]="rContrasena.invalid">
                                 Restablecer contraseña
                             </ion-button>
                         </ion-col>

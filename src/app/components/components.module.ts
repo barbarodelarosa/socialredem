@@ -5,6 +5,10 @@ import { PostComponent } from './post/post.component';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '../pipes/pipes.module';
 import { ModalImgComponent } from './modal-img/modal-img.component';
+import { PruebasComponent } from './pruebas/pruebas.component';
+import { PruebaImcComponent } from './prueba-imc/prueba-imc.component';
+import { CrearPruebaImcComponent } from './crear-prueba-imc/crear-prueba-imc.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,14 +16,20 @@ import { ModalImgComponent } from './modal-img/modal-img.component';
   declarations: [
     PostsComponent,
     PostComponent,
-    ModalImgComponent
+    ModalImgComponent,
+    PruebaImcComponent,
+    PruebasComponent,
+    CrearPruebaImcComponent
   ],
   exports:[
     PostsComponent,
-    ModalImgComponent
+    ModalImgComponent,
+    PruebasComponent,
+    CrearPruebaImcComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     IonicModule,
     PipesModule
   ]

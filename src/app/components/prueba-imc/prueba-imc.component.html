@@ -1,0 +1,24 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>{{prueba.created | date: "yyyy-MM-dd"}} | <b>Nombre: </b> {{prueba.nombre}}</ion-card-subtitle>
+    <ion-card-title><b>Talla: {{prueba.talla}} Mts| Peso: {{prueba.peso}} Kg</b></ion-card-title>
+  </ion-card-header>
+  
+  <ion-card-content>
+    <ion-row>
+      <ion-col size="12"><b>Resultado:</b> {{prueba.imc}} IMC | {{prueba.calification}} </ion-col>
+    </ion-row>
+    <!-- {{prueba.mensaje}} Mensaje -->
+  </ion-card-content>
+  <ion-item>
+    
+    <ion-icon slot="end" name="eye" *ngIf="prueba.private"></ion-icon>
+    <ion-icon slot="end" name="eye-off" *ngIf="!prueba.private"></ion-icon>
+    <ion-toggle slot="end" [checked]="prueba.private" (ionChange)="privateToogle(prueba.id)">
+    </ion-toggle>
+    <!-- <ion-button slot="end">
+      <ion-icon name="close" slot="start"></ion-icon>
+      Borrar
+    </ion-button> -->
+  </ion-item>
+</ion-card>

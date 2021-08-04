@@ -9,6 +9,7 @@ import { UiServiceService } from '../../services/ui-services.service';
 import { PostsService } from '../../services/posts.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Post, User, RespuestaPosts } from '../../interfaces/interfaces';
+import { PruebasService } from '../../services/pruebas.service';
 
 declare let window: any;
 const URL = environment.url;
@@ -26,6 +27,7 @@ export class Tab4Page implements OnInit {
   nextResult=false;
   numPages=1;
   numPageActual=0;
+  pruebas: any[]=[];
 
   //SINO DECLARO EL TIPO DE OBJETO USER DA ERROR AL CARGAR LA PAGINA
   usuario: User={
@@ -50,18 +52,26 @@ export class Tab4Page implements OnInit {
               private loadingController: LoadingController,
               private uiServices: UiServiceService,
               private postService: PostsService,
-              private camera: Camera) {}
+              private camera: Camera,
+              private pruebasService: PruebasService) {}
   async ngOnInit(){
-   await this.getUser();
+    await this.getUser();
+  }
+  ionViewWillEnter(){
+    this.pruebasService.getPruebasIMCByUser(this.usuario.id)
+    .subscribe(resp=>{
+      this.pruebas = resp.results;
+      console.log(resp)
+    }, error=>{console.log(error)})
   }
 
- getUser(){
-    this.usuarioService.getUser().subscribe(usuario=>{
-      this.usuario=usuario;
-    },error=>{
-      this.uiServices.presentToast('No se pudo cargar su información de usuario');
-    });
- }
+getUser(){
+  this.usuarioService.getUser().subscribe(usuario=>{
+    this.usuario=usuario;
+  },error=>{
+    this.uiServices.presentToast('No se pudo cargar su información de usuario');
+  });
+}
 
 async userUpdate(fUserUpdate: NgForm){
     if(fUserUpdate.invalid){return;}
@@ -138,6 +148,13 @@ async userUpdate(fUserUpdate: NgForm){
   //   if(this.nextResult === true){
   //     this.postsUser(event)
   //   }
+  // }
+  // getPruebasIMCByUser(id){
+  //   this.pruebasService.getPruebasIMCByUser(id)
+  //   .subscribe(resp=>{
+  //     this.pruebas = resp.results;
+  //     console.log(resp)
+  //   }, error=>{console.log(error)})
   // }
 }
 

@@ -1,23 +1,25 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
         <ion-title class="ion-text-center">
-            Favoritos
+            Pruebas
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true">
-    <ion-slides [options]="slidesOpt" *ngIf="dataLocalService.posts.length === 0">
+    <ion-slides [options]="slidesOpt" *ngIf="pruebas.length === 0">
         <ion-slide>
-            <ion-label>No hay favoritos</ion-label>
+            <ion-label>No hay pruebas registradas</ion-label>
         </ion-slide>
     </ion-slides>
 
-    <app-posts *ngIf="dataLocalService.posts.length > 0" [posts]="dataLocalService.posts" [enFavoritos]="true"></app-posts>
+    <app-pruebas *ngIf="pruebas.length > 0" [pruebas]="pruebas"> </app-pruebas>
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button routerLink='/create-post'>
-            <ion-icon name="pencil"></ion-icon>
+        <ion-fab-button (click)="pruebaIMC()">
+            <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
 </ion-content>

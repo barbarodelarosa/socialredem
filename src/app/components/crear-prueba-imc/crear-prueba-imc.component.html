@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Prueba de IMC</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form #fPruebaIMC="ngForm" (ngSubmit)="calcularIMC(fPruebaIMC)">
+    <ion-item>
+      <ion-label position="floating">Talla: (Mts) <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="pruebaIMC.talla" name="talla" type="text" required></ion-input>
+      <!-- <ion-input required formControlName="email" type="text"></ion-input> -->
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Peso: (Kg) <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input [(ngModel)]="pruebaIMC.peso" name="peso" type="text" required></ion-input>
+    <!-- <ion-input required formControlName="password" type="text"></ion-input> -->
+  </ion-item>
+  <ion-button expand="block" shape="round" color="primary" type="submit" [disabled]="fPruebaIMC.invalid">
+    Calcular IMC
+  </ion-button>
+</form>
+</ion-content>
+<ion-button (click)="cerrarModal()" shape="round" expand="block" fill="clear">
+  <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+</ion-button>
