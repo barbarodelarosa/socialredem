@@ -13,7 +13,7 @@ export interface Post {
   id?: number;
   owner?: OwnerPost;
   categoria?: CategoriaPost[];
-  post_comentario?: any[];
+  post_comentario?: ComentarioPost[];
   post_imagen?: PostImagen[];
   titulo?: string;
   mensaje?: string;
@@ -43,9 +43,6 @@ export interface OwnerPost {
   first_name?: string;
   last_name?: string;
 }
-
-
-
 
 
 export interface PostImagen {
@@ -83,4 +80,15 @@ export interface User {
   birthday?: number,
   height?: number,
   weight?: number,
+}
+
+export interface ComentarioPost {
+  id?: string;
+  texto?: string;
+  votos?: string;
+  creado?: string;
+  compartido?: string;
+  owner?: any;
+  likes?: any[];
+  post?: Post;
 }

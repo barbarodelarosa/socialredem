@@ -13,7 +13,7 @@ export class PruebasService {
   constructor(private httpClient: HttpClient,
               private uiService: UiServiceService) { }
 
-  getPruebasIMCByUser(idUser: number, pull: boolean = false){
+  getPruebasIMCByUser(idUser: any, pull: boolean = false){
     if(!pull){this.paginasPruebasIMC=0;}
     this.paginasPruebasIMC ++;
       return this.httpClient.get<any>(`${URL}/api/v1/imc/?owner=${idUser}&page=${this.paginasPruebasIMC}`);

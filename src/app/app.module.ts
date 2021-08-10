@@ -25,7 +25,8 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     BrowserModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
-    AppRoutingModule],
+    AppRoutingModule,
+    ],
   providers: [
               HttpClientModule,
               Camera,

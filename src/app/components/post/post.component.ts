@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../interfaces/interfaces';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, NavController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { DatalocalService } from '../../services/datalocal.service';
 import { ModalController } from '@ionic/angular';
@@ -38,9 +38,11 @@ export class PostComponent implements OnInit {
               private socialSharing: SocialSharing,
               private dataLocal: DatalocalService,
               public modalController: ModalController,
-              public postService: PostsService) { }
+              public postService: PostsService,
+              public navCtrl:  NavController) { }
 
   ngOnInit() {
+    console.log('Post en el componente', this.post);
     this.likes = this.post.likes.length;
     this.vista = this.post.vistas;
     this.liked = false;
@@ -175,6 +177,13 @@ export class PostComponent implements OnInit {
     }else{
       this.dataLocal.guardarPost(this.post);
       };
+    }
+
+    detailUser(idUser){
+      this.navCtrl.navigateForward(`detail-user/${idUser}`);
+    }
+    detailPost(idPost){
+      this.navCtrl.navigateForward(`detail-post/${idPost}`);
     }
   //Fin de la clase
   }

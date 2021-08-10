@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
+
+
+    <!-- <ion-card color="light" class="ion-no-border">
+        <div class="img-wrapper">
+            <img src="http://192.168.43.232:8000/media/imagenes/11/avatars/ea16d2ec-040b-4338-83eb-c214474aa2c9.jpg" />
+            <ion-button color="light">
+                <ion-icon slot="icon-only" name="camera-outline" color="medium">
+                </ion-icon>
+            </ion-button>
+        </div>
+        <ion-card-content class="ion-text-center">
+            <h2>Zahra Zamin</h2>
+            <ion-text color="medium">
+                <div style="display: flex;" class="ion-justify-content-center">
+                    <ion-icon name="location-outline" color="medium">
+                    </ion-icon>
+                    <p>2345 Street, Ohio, USA.</p>
+                </div>
+            </ion-text>
+        </ion-card-content>
+    </ion-card> -->
+    
+    <!-- <div class="div-btn-img">
+        <ion-button class="btn-camera" expand="full" shape="round" (click)="galeria()">
+            <ion-icon slot="icon-only" name="images-outline">
+            </ion-icon>
+        </ion-button>
+
+    </div> -->
+
+ 
+    <ion-row>
+        <ion-col>
+
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating">Presentación</ion-label>
+                <ion-textarea [(ngModel)]="usuario.presentation" name="presentation" rows="7" maxlength="300" ></ion-textarea>
+                <!-- <ion-input [(ngModel)]="usuario.presentation" name="presentation" type="text" rows="10" spellcheck="true"></ion-input> -->
+              </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Correo</ion-label>
+                    <ion-input readonly='True' [(ngModel)]="usuario.email" name="email" type="email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Nombre de usuario</ion-label>
+                    <ion-input readonly='True' [(ngModel)]="usuario.username" name="username" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Nombre</ion-label>
+                    <ion-input [(ngModel)]="usuario.first_name" name="first_name" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Apellidos</ion-label>
+                    <ion-input [(ngModel)]="usuario.last_name" name="last_name" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Edad</ion-label>
+                  <ion-input [(ngModel)]="usuario.age" name="age" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Estatura</ion-label>
+                <ion-input [(ngModel)]="usuario.weight" name="weight" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Peso</ion-label>
+              <ion-input [(ngModel)]="usuario.height" name="height" type="text"></ion-input>
+          </ion-item>
+
+
+            </ion-list>
+        </ion-col>
+    </ion-row>
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button type="submit">
+          <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+  </ion-fab> -->
+    <!-- <ion-row>
+        <ion-col text-center>
+            <ion-button type="submit" color="tertiary" shape="round">
+                Actualizar
+            </ion-button>
+        </ion-col>
+    </ion-row> -->
+
+
+</form>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="userUpdate(fUpdateUser)">
+      <ion-icon name="save"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+</ion-content>

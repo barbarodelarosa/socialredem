@@ -1,0 +1,71 @@
+<ion-header no-border>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/">
+          <ion-icon slot="start" src="../../../assets/svg/md-arrow-round-back.svg"></ion-icon>
+        </ion-back-button>
+    </ion-buttons>
+      <h1 class="ion-text-center">Post Detail</h1>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ion-content *ngIf="postOk | async">
+  <app-post [post]="post" [enFavoritos]="enFavoritos"></app-post>
+  <ion-grid fixed>
+    <ion-row *ngFor="let comentario of post.post_comentario">
+      <!-- <ion-col size="9" *ngIf="currentUser !== comentario.owner.id" class="message other-message"> -->
+      <ion-col size="2">
+        <ion-avatar class="img-avatar-center">
+          <img [src]="comentario.owner.avatar">
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="9" class="message other-message">
+        <b>{{ comentario.owner.username }}</b><br>
+        <span>{{comentario.texto}}</span>
+        <div class="time" class="ion-text-right"><br>
+          {{comentario.creado | date:'short' }}
+        </div>
+      </ion-col>
+
+      <!-- <ion-col offset="3" size="9" *ngIf="currentUser === comentario.owner.id" class="message my-message">
+        <b>{{ comentario.username }}</b><br>
+        <span>{{comentario.texto}}</span>
+        <div class="time" class="ion-text-right"><br>
+          {{comentario.creado | date:'short' }}
+        </div>
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light" >
+    <ion-row align-items-center no-padding>
+      <ion-col size="10">
+        <textarea autosize [maxRows]="maxRows" [minRows]="minRows" [(ngModel)]="newMsg" class="message-input" ></textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="sendMessage()" expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="msg-btn">
+          <ion-icon slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

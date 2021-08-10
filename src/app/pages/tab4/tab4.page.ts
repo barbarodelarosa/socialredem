@@ -10,6 +10,7 @@ import { PostsService } from '../../services/posts.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Post, User, RespuestaPosts } from '../../interfaces/interfaces';
 import { PruebasService } from '../../services/pruebas.service';
+import { Router } from '@angular/router';
 
 declare let window: any;
 const URL = environment.url;
@@ -53,16 +54,22 @@ export class Tab4Page implements OnInit {
               private uiServices: UiServiceService,
               private postService: PostsService,
               private camera: Camera,
-              private pruebasService: PruebasService) {}
+              private pruebasService: PruebasService,
+              private router: Router,
+              ) {}
   async ngOnInit(){
     await this.getUser();
   }
+  // El codigo pesado para cuando va a cargar la pagina va aqui
   ionViewWillEnter(){
     this.pruebasService.getPruebasIMCByUser(this.usuario.id)
     .subscribe(resp=>{
       this.pruebas = resp.results;
       console.log(resp)
     }, error=>{console.log(error)})
+  }
+  ionViewDidEnter(){
+    console.log('Estamos en DidEnter');
   }
 
 getUser(){
@@ -80,7 +87,8 @@ async userUpdate(fUserUpdate: NgForm){
       //duration: 2000
     });
     await loading.present();
-    this.usuarioService.userUpdate(fUserUpdate.value)
+    console.log('Valores de usuario', this.usuario);
+    this.usuarioService.userUpdate(this.usuario)
       .subscribe(user=>{
         this.usuario = user;
       this.uiServices.presentToast('Usuario actualizado');
@@ -96,7 +104,6 @@ async userUpdate(fUserUpdate: NgForm){
     this.uiServices.presentToast('Se ha cerrado la sesión');
 
   }
-  onClick(){}
 
   galeria(){
     const options: CameraOptions = {
@@ -126,6 +133,10 @@ async userUpdate(fUserUpdate: NgForm){
   segmentChangeDetailUser(event){
     const valueSegment = event.detail.value;
     console.log(valueSegment);
+  }
+  editarPerfil(){
+    console.log('Navigate');
+    this.router.navigateByUrl('edit-user');
   }
   // postsUser(event?){
   //   this.postService.getPostsByUser(this.usuario.id).subscribe((resp:RespuestaPosts)=>{

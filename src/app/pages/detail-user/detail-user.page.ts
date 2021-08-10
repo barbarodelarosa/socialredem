@@ -9,6 +9,7 @@ import { LoadingController, IonSegment } from '@ionic/angular';
 import { UiServiceService } from '../../services/ui-services.service';
 import { PostsService } from '../../services/posts.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare let window: any;
 const URL = environment.url;
@@ -43,25 +44,31 @@ export class DetailUserPage implements OnInit {
     height: 0,
     weight: 0,
   };
-
+  urlTreePage;
+  idUser;
   constructor(private usuarioService: UsuarioService,
               private http: HttpClient,
               private loadingController: LoadingController,
               private uiServices: UiServiceService,
               private postService: PostsService,
-              private camera: Camera) {}
+              private camera: Camera,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+                this.idUser = this.activatedRoute.snapshot.paramMap.get('id');
+                console.log(this.idUser);
+              }
   async ngOnInit(){
-    await this.getUser();
+    await this.getUser(this.idUser);
     // this.segmentUser = 'user';  
   }
 
- getUser(){
-    this.usuarioService.getUser().subscribe(usuario=>{
-      this.usuario=usuario;
-    },error=>{
-      this.uiServices.presentToast('No se pudo cargar su información de usuario');
-    });
- }
+getUser(idUser){
+  this.usuarioService.getUserById(idUser).subscribe(usuario=>{
+    this.usuario=usuario;
+  },error=>{
+    this.uiServices.presentToast('No se pudo cargar su información de usuario');
+  });
+}
 
 async userUpdate(fUserUpdate: NgForm){
     if(fUserUpdate.invalid){return;}

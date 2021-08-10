@@ -1,7 +1,6 @@
 <div class="post">
     <ion-item lines="none">
-        <ion-avatar slot="start">
-
+        <ion-avatar slot="start" (click)="detailUser(post.owner.id)">
             <ng-container *ngIf="post.owner.avatar; else elseTemplateAvatar">
                 <ion-img [src]="post.owner.avatar"></ion-img>
                 <!-- <h3>{{post.owner.first_name}} {{post.owner.last_name}}</h3> -->
@@ -15,10 +14,10 @@
         <ion-label>
 
             <ng-container *ngIf="post.owner.first_name; else elseTemplate">
-                <h3>{{post.owner.first_name}} {{post.owner.last_name}}</h3>
+                <h3 (click)="detailUser(post.owner.id)">{{post.owner.first_name}} {{post.owner.last_name}}</h3>
             </ng-container>
             <ng-template #elseTemplate>
-                <h3>{{post.owner.username}}</h3>
+                <h3 (click)="detailUser(post.owner.id)">{{post.owner.username}}</h3>
             </ng-template>
             <small>
                 <i>
@@ -60,7 +59,7 @@
         <ion-icon name="eye-outline" class="ion-margin"></ion-icon>
         <ion-badge color="primary" mode="ios">{{vista}} Vistas</ion-badge> -->
         <ion-icon [style]=" liked | likes " slot="start" class="margin-inline-end-15" [name]="nameIcon" (click)="like(post.id)"></ion-icon> 
-        <ion-icon slot="start" name="chatbubbles-outline" class="margin-inline-end-15" mode="ios" ></ion-icon>
+        <ion-icon slot="start" name="chatbubbles-outline" class="margin-inline-end-15" mode="ios" (click)="detailPost(post.id)"></ion-icon>
         <ion-icon slot="start" name="paper-plane-outline" class="margin-inline-end-15" (click)="sharePost()"></ion-icon>
         <ion-icon slot="end" name="bookmark-outline" class="margin-inline-end-15" (click)="savePost()"></ion-icon>
        
@@ -70,8 +69,14 @@
             {{likes}} Me gusta
         </ion-label>
         <br>
-        <ion-label class="margin-top-botton">
-            Ver {{likes}} comentarios
+        <ion-label class="margin-top-botton" *ngIf="post.post_comentario.length === 0" (click)="detailPost(post.id)">
+            No hay comentarios...
+        </ion-label>
+        <ion-label class="margin-top-botton" *ngIf="post.post_comentario.length === 1" (click)="detailPost(post.id)">
+            Ver {{post.post_comentario.length}} comentario...
+        </ion-label>
+        <ion-label class="margin-top-botton" *ngIf="post.post_comentario.length > 1" (click)="detailPost(post.id)">
+            Ver {{post.post_comentario.length}} comentarios...
         </ion-label>
     </ion-item>
    

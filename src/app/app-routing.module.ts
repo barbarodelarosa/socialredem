@@ -27,8 +27,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/create-business/create-business.module').then( m => m.CreateBusinessPageModule)
   },
   {
-    path: 'detail-user',
+    path: 'detail-user/:id',
     loadChildren: () => import('./pages/detail-user/detail-user.module').then( m => m.DetailUserPageModule)
+  },
+  {
+    path: 'edit-user',
+    loadChildren: () => import('./pages/edit-user/edit-user.module').then( m => m.EditUserPageModule)
+  },
+  {
+    path: 'detail-post/:id',
+    loadChildren: () => import('./pages/detail-post/detail-post.module').then( m => m.DetailPostPageModule)
   }
 ];
 @NgModule({

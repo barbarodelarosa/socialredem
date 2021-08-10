@@ -191,5 +191,28 @@ obtenerPostPorCategorias(categoria: number){
     this.paginaPost ++;
     return this.httpClient.get<RespuestaPosts>(`${URL}/api/v1/read-post/?owner=${idUser}&page=${this.paginaPost}`);
   }
+  getPostsById(idPost){
+    return this.httpClient.get<any>(`${URL}/api/v1/read-post/${idPost}`);
+  }
+
+  commentPost(idPost: any, msg: any){
+    const data = {
+      texto: msg,
+      owner: 2,
+      post: idPost
+    };
+    return this.httpClient.post<any>(`${URL}/api/v1/comentario-post/`,data);
+    // return this.httpClient.post<any>(`${URL}/api/v1/post/${idPost}/comment/`,data);
+  }
+
+  // uploadImage(userId: any, imageBase64: any) {
+  //   const data={
+  //     imagen:imageBase64,
+  //     post:userId
+  //   };
+  //   this.uiService.alertaInformativa('SE VA A CREAR '+JSON.stringify(data));
+
+  //   return this.httpClient.post<any>(`${URL}/api/v1/imagen/`, data);
+  // }
 
 }

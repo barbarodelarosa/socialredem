@@ -15,6 +15,7 @@ export class UsuarioService {
 access_token: string = null;
 refresh_token: string = null;
 access: string = null;
+id_user: any;
 private usuario: any = {};
 id='';
   constructor(private http: HttpClient,
@@ -34,7 +35,7 @@ id='';
         console.log('Prueba headers',pruebaheaders);*/
         if(resp.user){
           this.usuario = resp.user;
-          this.guardarToken(resp.access_token, resp.refresh_token);
+          this.guardarToken(resp.access_token, resp.refresh_token, resp.user.id);
         }
 
         resolve(true);
@@ -57,14 +58,16 @@ id='';
     });
   }
 
-  async guardarToken(access_token: string, refresh_token: string){
-    this.access_token = access_token;
+  async guardarToken(access_token: string, refresh_token: string, id_user: any){
+    this.access_token  = access_token;
     this.refresh_token = refresh_token;
+    this.id_user       = id_user;
 
     //await this.storage.set('access_token', access_token);
     await localStorage.setItem('access_token', access_token);
     //await this.storage.set('refresh_token', refresh_token);
     await localStorage.setItem('refresh_token', refresh_token);
+    await localStorage.setItem('id_user', id_user);
 
   }
 
@@ -270,6 +273,10 @@ crearPerfilUsuario(perfil){
 getUser(){
   return this.http.get<User>(`${URL}${ENV.pathGetUser}`);
 }
+getUserById(id: string){
+  return this.http.get<User>(`${URL}${ENV.pathGetUserById}${id}`);
+}
+
 
 
 

@@ -1,6 +1,6 @@
 <ion-header no-border>
     <ion-toolbar>
-        <h1 class="ion-text-center">Actualizar perfil</h1>
+        <h1 class="ion-text-center">Perfil</h1>
         <ion-buttons slot="end">
             <ion-button (click)="logout()" color="danger">
                 <ion-icon slot="icon-only" name="exit"></ion-icon>
@@ -85,17 +85,20 @@
 
         </ion-col>
     </ion-row>
+    
     <ion-row>
         <ion-col size="12">
-            <ion-label position="floating">
-               Detalle
-            </ion-label>
-            <ion-textarea [value]="usuario.presentation" rows="6">
-                <!-- {{usuario.presentation}} -->
-            </ion-textarea>
+                {{usuario.presentation}}
         </ion-col>
     </ion-row>
- 
+    <ion-row>
+        <ion-col size="12">
+            <ion-button (click)="editarPerfil()" expand="block" fill="outline" shape="round">
+                <ion-icon slot="start" name="pencil-outline"></ion-icon>
+                Editar perfil
+            </ion-button>
+        </ion-col>
+    </ion-row>
     <ion-segment [(ngModel)]="segmentUser" (ionChange)="segmentChangeDetailUser($event)">
         <ion-segment-button value="user" checked>
           <ion-label>
@@ -116,7 +119,7 @@
       
       <div [ngSwitch]="segmentUser">
         <div *ngSwitchCase="'user'">
-            <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm">
+            <!-- <form (ngSubmit)="userUpdate(fUpdateUser)" #fUpdateUser="ngForm"> -->
 
 
                 <!-- <ion-card color="light" class="ion-no-border">
@@ -154,37 +157,43 @@
                         <ion-list>
         
                             <ion-item>
-                                <ion-label position="floating">Correo</ion-label>
-                                <ion-input readonly='True' [(ngModel)]="usuario.email" name="email" type="email"></ion-input>
+                                <ion-label><h3>Correo</h3>{{usuario.email}}</ion-label>
+                                <!-- <ion-label>{{usuario.email}}</ion-label> -->
+                                <!-- <ion-input readonly='True' [(ngModel)]="usuario.email" name="email" type="email"></ion-input> -->
                             </ion-item>
         
                             <ion-item>
-                                <ion-label position="floating">Nombre de usuario</ion-label>
-                                <ion-input readonly='True' [(ngModel)]="usuario.username" name="username" type="text"></ion-input>
+                                <ion-label><h3>Usuario</h3>{{usuario.username}}</ion-label>
+                                <!-- <ion-label>{{usuario.username}}</ion-label> -->
+                                <!-- <ion-label position="floating">Nombre de usuario</ion-label> -->
+                                <!-- <ion-input readonly='True' [(ngModel)]="usuario.username" name="username" type="text"></ion-input> -->
                             </ion-item>
                             <ion-item>
-                                <ion-label position="floating">Nombre</ion-label>
-                                <ion-input [(ngModel)]="usuario.first_name" name="first_name" type="text"></ion-input>
+                                <ion-label><h3>Nombre</h3>{{usuario.first_name}}</ion-label>
+                                <!-- <ion-label>{{usuario.first_name}}</ion-label> -->
+                                <!-- <ion-label position="floating">Nombre</ion-label> -->
+                                <!-- <ion-input [(ngModel)]="usuario.first_name" name="first_name" type="text"></ion-input> -->
                             </ion-item>
                             <ion-item>
-                                <ion-label position="floating">Apellidos</ion-label>
-                                <ion-input [(ngModel)]="usuario.last_name" name="last_name" type="text"></ion-input>
+                                <ion-label><h3>Apellidos</h3>{{usuario.last_name}}</ion-label>
+                                <!-- <ion-label>{{usuario.last_name}}</ion-label> -->
+                                <!-- <ion-label position="floating">Apellidos</ion-label> -->
+                                <!-- <ion-input [(ngModel)]="usuario.last_name" name="last_name" type="text"></ion-input> -->
                             </ion-item>
-        
         
                         </ion-list>
                     </ion-col>
                 </ion-row>
         
-                <ion-row>
+                <!-- <ion-row>
                     <ion-col text-center>
                         <ion-button type="submit" color="tertiary" shape="round">
                             Actualizar
                         </ion-button>
                     </ion-col>
-                </ion-row>
+                </ion-row> -->
         
-            </form>
+            <!-- </form> -->
         </div>
       
         <!-- <div *ngSwitchCase="'posts'">

@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports:[
     PostsComponent,
+    PostComponent,
     ModalImgComponent,
     PruebasComponent,
     CrearPruebaImcComponent

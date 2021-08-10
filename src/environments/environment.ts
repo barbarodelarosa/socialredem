@@ -10,7 +10,9 @@ export const environment = {
   pathLogin:'/api/auth/login/',
   pathResetPassword:'/api/auth/password-reset/',
   pathPasswordResetConfirm:'/api/auth/password-reset-confirm/',
-  pathGetUser:'/api/auth/user/'
+  pathGetUser:'/api/auth/user/',
+  pathGetUserById:'/api/v1/usuario/'
+
 };
 
 /*
