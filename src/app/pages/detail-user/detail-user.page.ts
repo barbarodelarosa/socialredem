@@ -10,6 +10,7 @@ import { UiServiceService } from '../../services/ui-services.service';
 import { PostsService } from '../../services/posts.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PruebasService } from '../../services/pruebas.service';
 
 declare let window: any;
 const URL = environment.url;
@@ -25,7 +26,7 @@ export class DetailUserPage implements OnInit {
   tempImages = '';
   tempImagesBase64 = '';
   segmentUser: string = 'user';
-
+  pruebas: any[]=[];
   //SINO DECLARO EL TIPO DE OBJETO USER DA ERROR AL CARGAR LA PAGINA
   usuario: User={
     username:     '',
@@ -53,7 +54,9 @@ export class DetailUserPage implements OnInit {
               private postService: PostsService,
               private camera: Camera,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private pruebasService: PruebasService,
+              ) {
                 this.idUser = this.activatedRoute.snapshot.paramMap.get('id');
                 console.log(this.idUser);
               }
@@ -61,7 +64,13 @@ export class DetailUserPage implements OnInit {
     await this.getUser(this.idUser);
     // this.segmentUser = 'user';  
   }
-
+  ionViewWillEnter(){
+    this.pruebasService.getPruebasIMCByUser(this.usuario.id)
+    .subscribe(resp=>{
+      this.pruebas = resp.results;
+      console.log(resp)
+    }, error=>{console.log(error)})
+  }
 getUser(idUser){
   this.usuarioService.getUserById(idUser).subscribe(usuario=>{
     this.usuario=usuario;

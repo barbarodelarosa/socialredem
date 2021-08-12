@@ -139,8 +139,9 @@
 
   <div *ngSwitchCase="'tests'">
     <ion-row>
-      <ion-col size="12">Esdtamos probando</ion-col>
+      <app-pruebas *ngIf="pruebas.length > 0" [pruebas]="pruebas"> </app-pruebas>
     </ion-row>
+
   </div>
 
 </div>
