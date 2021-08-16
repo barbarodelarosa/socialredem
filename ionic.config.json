@@ -1,7 +1,8 @@
 {
-    "name": "socialredem",
-    "integrations": {
-        "cordova": {}
-    },
-    "type": "angular"
+  "name": "socialredem",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
 }

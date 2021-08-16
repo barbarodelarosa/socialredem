@@ -1,0 +1,17 @@
+<ion-content>
+  <h3 class="ion-text-center">¿Cómo te sientes hoy?</h3>
+  <ion-list>
+    <ion-item (click)="sendTestEmotion(emotion)" *ngFor="let emotion of emotions">
+      <ion-label >{{emotion?.emotion_name}}</ion-label>
+      <ion-avatar slot="start">
+        <img [src]="emotion.icon"/>
+      </ion-avatar>
+      <p hidden="true">{{emotion.emotion_value}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+<ion-button (click)="cerrarModal()" shape="round" expand="block" fill="clear">
+  <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+</ion-button>

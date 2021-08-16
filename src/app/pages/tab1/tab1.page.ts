@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { Post } from '../../interfaces/post.interface';
 import { CategoriaPost } from '../../interfaces/interfaces';
-import { IonSegment } from '@ionic/angular';
+import { IonSegment, LoadingController } from '@ionic/angular';
+import { UiServiceService } from '../../services/ui-services.service';
 
 
 
@@ -21,18 +22,25 @@ export class Tab1Page implements OnInit {
   segmento;
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild(IonSegment) segment: IonSegment;
-  constructor(private postService: PostsService) {}
-
-
- async ngOnInit(){
-   this.siguientes();
-   this.postService.obtenerCategoriasPosts()
-    .subscribe((resp: any)=>{
-      this.categorias.push(...resp.results);
-    },error=>{
-      console.log(error);
-    });
-  }
+  constructor(private postService: PostsService,
+    private uiService: UiServiceService,
+    private loadingCtrl: LoadingController) {
+    }
+    
+    
+async ngOnInit(){
+  this.uiService.presentLoading();
+  this.siguientes();
+  this.postService.obtenerCategoriasPosts()
+  .subscribe((resp: any)=>{
+    this.categorias.push(...resp.results);
+  },error=>{
+    console.log(error);
+  });
+}
+ionViewDidEnter(){
+  this.uiService.dismiss();
+}
 
   siguientes(event?, pull: boolean=false){
 

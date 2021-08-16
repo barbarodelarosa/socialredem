@@ -4,13 +4,14 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { environment } from '../../../environments/environment';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, PopoverController } from '@ionic/angular';
 import { UiServiceService } from '../../services/ui-services.service';
 import { PostsService } from '../../services/posts.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Post, User, RespuestaPosts } from '../../interfaces/interfaces';
 import { PruebasService } from '../../services/pruebas.service';
 import { Router } from '@angular/router';
+import { PopOverEmotionComponent } from '../../components/pop-over-emotion/pop-over-emotion.component';
 
 declare let window: any;
 const URL = environment.url;
@@ -48,6 +49,7 @@ export class Tab4Page implements OnInit {
     weight: 0,
   };
   segmentUser: string = 'user';
+  emotions = [];
   constructor(private usuarioService: UsuarioService,
               private http: HttpClient,
               private loadingController: LoadingController,
@@ -56,9 +58,13 @@ export class Tab4Page implements OnInit {
               private camera: Camera,
               private pruebasService: PruebasService,
               private router: Router,
+              private popOver: PopoverController,
               ) {}
   async ngOnInit(){
+    this.uiServices.presentLoading();
+
     await this.getUser();
+
   }
   // El codigo pesado para cuando va a cargar la pagina va aqui
   ionViewWillEnter(){
@@ -66,12 +72,25 @@ export class Tab4Page implements OnInit {
     .subscribe(resp=>{
       this.pruebas = resp.results;
       console.log(resp)
-    }, error=>{console.log(error)})
+    }, error=>{console.log(error)});
+
+    this.uiServices.dismiss();
   }
   ionViewDidEnter(){
+    this.getEmotion();
     console.log('Estamos en DidEnter');
   }
-
+  getEmotion(){
+    this.pruebasService.getEmotionStateByUser(this.usuario.id)
+    .subscribe(resp_emotions=>{
+      this.emotions = resp_emotions.results;
+      console.log(this.emotions);
+      this.emotions = this.emotions.slice(0,6);
+      console.log(this.emotions);
+    }, err=>{
+      console.log(err);
+    })
+  }
 getUser(){
   this.usuarioService.getUser().subscribe(usuario=>{
     this.usuario=usuario;
@@ -167,5 +186,19 @@ async userUpdate(fUserUpdate: NgForm){
   //     console.log(resp)
   //   }, error=>{console.log(error)})
   // }
+
+  async detailEmoticono(event, emotion){
+    console.log(emotion);
+    
+    const popOver = await this.popOver.create({
+        
+        component: PopOverEmotionComponent,
+        componentProps: {name : emotion.emotion_name},
+        event,
+        mode: 'ios'
+    });
+    await popOver.present();
+
+  }
 }
 

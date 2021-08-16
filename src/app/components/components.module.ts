@@ -9,6 +9,8 @@ import { PruebasComponent } from './pruebas/pruebas.component';
 import { PruebaImcComponent } from './prueba-imc/prueba-imc.component';
 import { CrearPruebaImcComponent } from './crear-prueba-imc/crear-prueba-imc.component';
 import { FormsModule } from '@angular/forms';
+import { EmotionStateComponent } from './emotion-state/emotion-state.component';
+import { EvaluateEmotionStateComponent } from './evaluate-emotion-state/evaluate-emotion-state.component';
 
 
 
@@ -19,14 +21,18 @@ import { FormsModule } from '@angular/forms';
     ModalImgComponent,
     PruebaImcComponent,
     PruebasComponent,
-    CrearPruebaImcComponent
+    CrearPruebaImcComponent,
+    EmotionStateComponent,
+    EvaluateEmotionStateComponent
   ],
   exports:[
     PostsComponent,
     PostComponent,
     ModalImgComponent,
     PruebasComponent,
-    CrearPruebaImcComponent
+    CrearPruebaImcComponent,
+    EmotionStateComponent,
+    EvaluateEmotionStateComponent
   ],
   imports: [
     CommonModule,

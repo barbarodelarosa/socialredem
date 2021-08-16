@@ -5,7 +5,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
   providedIn: 'root'
 })
 export class UiServiceService {
-
+isLoading = false;
   constructor(private alertController: AlertController,
               private toastController: ToastController,
               public loadingController: LoadingController) { }
@@ -29,20 +29,34 @@ export class UiServiceService {
   }
 
   async presentLoading(duration?, message='Por favor espere...', dismiss=false) {
-    const loading = await this.loadingController.create({
+    this.isLoading = false;
+    return await this.loadingController.create({
+      spinner: 'bubbles',
       cssClass: 'my-custom-class',
       message,
       duration
+    }).then(a=>{
+      a.present().then(()=>{
+        console.log('Presented');
+        if(!this.isLoading){
+          a.dismiss().then(()=> console.log('Abort presenting'));
+        }
+      });
     });
-    await loading.present();
-
-    if (dismiss){
-      loading.dismiss();
-    }
-
-    const { role, data } = await loading.onDidDismiss();
-
-    console.log('Loading dismissed!');
   }
+  async dismiss(){
+    this.isLoading = false;
+    return await this.loadingController.dismiss().then(()=>console.log('Dismissed'));
+  }
+    // await loading.present();
+
+    // if (dismiss){
+    //   loading.dismiss();
+    // }
+
+  //   const { role, data } = await loading.onDidDismiss();
+
+  //   console.log('Loading dismissed!');
+  // }
 
 }

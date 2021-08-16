@@ -25,6 +25,7 @@ export interface Post {
   compartido?: number;
   likes?: any[];
   vistas?: number;
+  precio?: number;
 }
 
 export interface CategoriaPost {

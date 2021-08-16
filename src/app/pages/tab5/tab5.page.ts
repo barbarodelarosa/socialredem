@@ -3,6 +3,8 @@ import { DatalocalService } from '../../services/datalocal.service';
 import { PruebasService } from '../../services/pruebas.service';
 import { ModalController } from '@ionic/angular';
 import { CrearPruebaImcComponent } from '../../components/crear-prueba-imc/crear-prueba-imc.component';
+import { EvaluateEmotionStateComponent } from '../../components/evaluate-emotion-state/evaluate-emotion-state.component';
+import { UiServiceService } from '../../services/ui-services.service';
 
 @Component({
   selector: 'app-tab5',
@@ -18,21 +20,25 @@ export class Tab5Page implements OnInit{
 
   constructor(public dataLocalService: DatalocalService,
               public pruebasService: PruebasService,
-              public modalCtrl: ModalController)  {
+              public modalCtrl: ModalController,
+              private uiService: UiServiceService )  {
     
   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.uiService.presentLoading();
     const id_user = localStorage.getItem('id_user');
     this.pruebasService.getPruebasIMCByUser(id_user)
     .subscribe(resp=>{
       this.pruebas = resp.results;
       console.log(resp)
     }, error=>{console.log(error)})
-    
   }
+  ionViewDidEnter(){
+  this.uiService.dismiss();
+}
   async pruebaIMC(){
     console.log('Prueba IMC');
     const modal = await this.modalCtrl.create({
@@ -48,6 +54,15 @@ export class Tab5Page implements OnInit{
     this.pruebas.unshift(data.data.resp);
   }
 
-  
+  async emotionValue(){
+    console.log('Todo ok Emotion');
+    const modal = await this.modalCtrl.create({
+      component: EvaluateEmotionStateComponent,
+      componentProps:{
+        nombre: "La prueba esta ok"
+      }
+    });
+    await modal.present();
+  }
 
 }

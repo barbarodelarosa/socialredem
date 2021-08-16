@@ -16,6 +16,11 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Network } from '@ionic-native/network/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -33,6 +38,11 @@ import { IonicStorageModule } from '@ionic/storage-angular';
               FileTransfer,
               Base64,
               SocialSharing,
+
+              StatusBar, 
+              SplashScreen,
+              Network,
+
               {
                 provide: HTTP_INTERCEPTORS,
                 useClass: HeaderInterceptor,
