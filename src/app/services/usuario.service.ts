@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { RespuestaLogin, User } from '../interfaces/interfaces';
 import { UiServiceService } from './ui-services.service';
 
@@ -273,8 +273,8 @@ crearPerfilUsuario(perfil){
 getUser(){
   return this.http.get<User>(`${URL}${ENV.pathGetUser}`);
 }
-getUserById(id: string){
-  return this.http.get<User>(`${URL}${ENV.pathGetUserById}${id}`);
+getUserById(id: any){
+  return this.http.get<User>(`${URL}/api/v1/usuario/${id}`);
 }
 
 

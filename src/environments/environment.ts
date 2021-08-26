@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url:'http://192.168.43.232:8000',
+  url:'https://socialredem.pythonanywhere.com',
   // url:'http://127.0.0.1:8000',
   pathRegister:'/api/auth/register/',
   pathLogin:'/api/auth/login/',
