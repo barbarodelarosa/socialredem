@@ -61,7 +61,7 @@
         <ion-badge color="primary" mode="ios">{{vista}} Vistas</ion-badge> -->
         <ion-icon [style]=" liked | likes " slot="start" class="margin-inline-end-15" [name]="nameIcon" (click)="like(post.id)"></ion-icon> 
         <ion-icon slot="start" name="chatbubbles-outline" class="margin-inline-end-15" mode="ios" (click)="detailPost(post.id)"></ion-icon>
-        <ion-icon slot="start" name="paper-plane-outline" class="margin-inline-end-15" (click)="sharePost()"></ion-icon>
+        <ion-icon slot="start" name="paper-plane-outline" class="margin-inline-end-15" (click)="compartirPost()"></ion-icon>
         <h1 class="precio" *ngIf="post.precio > 0">
             $ {{post.precio}}
         </h1>

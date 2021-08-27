@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../interfaces/interfaces';
-import { ActionSheetController, NavController } from '@ionic/angular';
+import { ActionSheetController, NavController, Platform } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { DatalocalService } from '../../services/datalocal.service';
 import { ModalController } from '@ionic/angular';
@@ -8,6 +8,7 @@ import { ModalImgComponent } from '../modal-img/modal-img.component';
 import { PostsService } from '../../services/posts.service';
 import {environment} from '../../../environments/environment'
 import * as moment from 'moment';
+
 moment.locale('es');
 
 const URL = environment.url;
@@ -39,7 +40,8 @@ export class PostComponent implements OnInit {
               private dataLocal: DatalocalService,
               public modalController: ModalController,
               public postService: PostsService,
-              public navCtrl:  NavController) { }
+              public navCtrl:  NavController,
+              private platform: Platform) { }
 
   ngOnInit() {
     console.log('Post en el componente', this.post);
@@ -114,13 +116,9 @@ export class PostComponent implements OnInit {
         text: 'Compartir',
         icon: 'share',
         handler: () => {
-          this.socialSharing.share(
-            this.post.mensaje,
-            this.post.owner.username,
-            '',
-            `${URL}`,
-          );
-          console.log('Share clicked');
+
+          this.compartirPost();
+         
         }
       }, 
       {
@@ -161,15 +159,15 @@ export class PostComponent implements OnInit {
   }
 
 
-  sharePost(){
-    this.socialSharing.share(
-      this.post.mensaje,
-      this.post.owner.username,
-      '',
-      `${URL}`,
-    );
-    console.log('Share clicked');
-  }
+  // sharePost(){
+  //   this.socialSharing.share(
+  //     this.post.mensaje,
+  //     this.post.owner.username,
+  //     '',
+  //     `${URL}`,
+  //   );
+  //   console.log('Share clicked');
+  // }
   savePost(){
     if( this.enFavoritos ){
       // borrar
@@ -184,6 +182,33 @@ export class PostComponent implements OnInit {
     }
     detailPost(idPost){
       this.navCtrl.navigateForward(`detail-post/${idPost}`);
+    }
+
+
+    compartirPost(){
+
+      if(this.platform.is("capacitor")){
+        this.socialSharing.share(
+          this.post.mensaje,
+          this.post.owner.username,
+          '',
+          `${URL}`,
+        );
+        console.log('Share clicked');
+        
+      }else{
+        if (navigator.share) {
+          navigator.share({
+            title: this.post.mensaje,
+            // text: 'Check out web.dev.',
+            url: `${URL}`,
+          })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        }
+      }
+
+
     }
   //Fin de la clase
   }
