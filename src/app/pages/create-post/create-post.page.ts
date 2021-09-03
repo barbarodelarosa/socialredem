@@ -123,8 +123,10 @@ export class CreatePostPage implements OnInit {
     const image = await Camera.getPhoto({
       quality: 100,
       width: 400,
-      allowEditing: false,
+      height: 300,
+      allowEditing: true,
       resultType: CameraResultType.DataUrl,
+      correctOrientation: true,
       // source: CameraSource.Prompt
     });
     // const image = await Camera.getPhoto({

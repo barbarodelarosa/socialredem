@@ -242,9 +242,12 @@ async validaToken(){
  }
 
 
- userUpdate(usuario: User){
+ userUpdate(usuario: User, imgBase64?){
   // SE DEBE ACTUALIZAR EL USUARIO EN LA BASE DE DATOS Y EN LOCALSTORAGE
   console.log('La data es', usuario);
+  if(imgBase64){
+    usuario.avatar = imgBase64;
+  }
   
   return this.http.put<User>(`${URL}${ENV.pathGetUser}`,usuario);
 
